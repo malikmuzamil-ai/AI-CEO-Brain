@@ -2,1706 +2,1068 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI CEO Brain — Complete Guide · Purely Personal</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Poppins:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI CEO v2.0 · Purely Personal · by Daniel Paul</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,800&family=Poppins:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ===== RESET ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Poppins',sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased}
+body{font-family:'Poppins',sans-serif;background:#fff;color:#0D0D0D;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
+/* ===== TOKENS ===== */
 :root{
-  --red:#E8294C;
-  --red-dark:#C4203D;
-  --red-light:#F5607A;
-  --red-pale:#FFF0F3;
-  --red-pale2:#FFE4E9;
-  --black:#0D0D0D;
-  --black2:#1A1A1A;
-  --gray-50:#FAFAF8;
-  --gray-100:#F4F4F1;
-  --gray-200:#E8E8E4;
-  --gray-300:#D0D0CA;
-  --gray-500:#8C8C86;
-  --gray-700:#484844;
-  --border:rgba(0,0,0,0.07);
-  --border2:rgba(0,0,0,0.12);
+  --red:#E8294C;--red-d:#C4203D;--red-l:#F5607A;
+  --rp:#FFF0F3;--rp2:#FFE4E9;
+  --blk:#0D0D0D;--blk2:#1A1A1A;
+  --g50:#FAFAF8;--g100:#F4F4F1;--g200:#E8E8E4;
+  --g500:#8C8C86;--g700:#484844;
+  --br:rgba(0,0,0,.07);--br2:rgba(0,0,0,.12);
   --fd:'Playfair Display',Georgia,serif;
-  --fb:'Poppins',sans-serif;
   --fm:'DM Mono',monospace;
+  /* exec colors */
+  --cmo:#7C3AED;--cmo-p:#F5F3FF;
+  --cro:#059669;--cro-p:#ECFDF5;
+  --coo:#D97706;--coo-p:#FFFBEB;
+  --cfo:#2563EB;--cfo-p:#EFF6FF;
 }
 
-/* SCROLL */
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:#fff}
-::-webkit-scrollbar-thumb{background:rgba(232,41,76,.3);border-radius:2px}
+::-webkit-scrollbar-thumb{background:rgba(232,41,76,.35);border-radius:2px}
 
-/* NAV */
-nav{
-  position:sticky;top:0;z-index:100;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 48px;
+/* ===== NAV ===== */
+#nav{position:sticky;top:0;z-index:200;
+  background:rgba(255,255,255,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--br);
+  height:56px;padding:0 40px;
   display:flex;align-items:center;justify-content:space-between;
-  height:60px;
-}
-.nav-brand{
-  font-family:var(--fd);font-size:18px;font-weight:800;
-  color:var(--black);display:flex;align-items:center;gap:8px;
-}
-.nav-dot{width:8px;height:8px;background:var(--red);border-radius:50%}
-.nav-links{display:flex;gap:32px}
-.nav-links a{
-  font-size:13px;font-weight:500;color:var(--gray-700);
-  text-decoration:none;transition:color .2s;
-}
-.nav-links a:hover{color:var(--red)}
-.nav-cta{
-  background:var(--red);color:#fff;
-  font-size:12px;font-weight:700;
-  padding:8px 20px;border-radius:99px;
-  text-decoration:none;
-  font-family:var(--fm);letter-spacing:.06em;text-transform:uppercase;
-  transition:background .2s,transform .15s;
-  display:flex;align-items:center;gap:6px;
-}
-.nav-cta:hover{background:var(--red-dark);transform:translateY(-1px)}
+  transition:box-shadow .3s}
+#nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.07)}
+.nb{font-family:var(--fd);font-size:16px;font-weight:800;color:var(--blk);display:flex;align-items:center;gap:7px}
+.nd{width:7px;height:7px;background:var(--red);border-radius:50%}
+@keyframes ndp{0%,100%{transform:scale(1)}50%{transform:scale(1.4)}}
+.nd{animation:ndp 2.5s ease infinite}
+.nl{display:flex;gap:24px}
+.nl a{font-size:12px;font-weight:500;color:var(--g700);text-decoration:none;transition:color .2s;position:relative}
+.nl a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:var(--red);transition:width .3s}
+.nl a:hover{color:var(--red)}
+.nl a:hover::after,.nl a.active::after{width:100%}
+.nc{background:var(--red);color:#fff;font-family:var(--fm);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:7px 18px;border-radius:99px;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:5px}
+.nc:hover{background:var(--red-d);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,41,76,.3)}
 
-/* HERO */
-.hero{
-  min-height:92vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;
-  padding:80px 40px;
-  position:relative;overflow:hidden;
-  background:
-    radial-gradient(ellipse 70% 50% at 50% 0%,rgba(232,41,76,.07) 0%,transparent 70%),
-    linear-gradient(180deg,#fff 0%,#FAFAF8 100%);
-}
-.hero-grid-bg{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(232,41,76,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(232,41,76,.04) 1px,transparent 1px);
-  background-size:48px 48px;
-  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 0%,transparent 80%);
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--red);
-  background:var(--red-pale);
-  border:1px solid rgba(232,41,76,.18);
-  padding:6px 18px;border-radius:99px;
-  margin-bottom:32px;position:relative;
-}
-.pulse-ring{
-  width:8px;height:8px;position:relative;
-}
-.pulse-ring::before,.pulse-ring::after{
-  content:'';position:absolute;inset:0;
-  background:var(--red);border-radius:50%;
-}
-.pulse-ring::after{
-  animation:ring 2s ease-out infinite;
-  background:transparent;border:1px solid var(--red);
-}
-@keyframes ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
-.hero h1{
-  font-family:var(--fd);
-  font-size:clamp(52px,8vw,96px);
-  font-weight:900;
-  letter-spacing:-.03em;
-  line-height:.98;
-  color:var(--black);
-  margin-bottom:8px;
-  position:relative;
-}
-.hero h1 .line2{
-  color:var(--red);
-  font-style:italic;
-}
-.hero-sub{
-  font-size:17px;font-weight:400;
-  color:var(--gray-700);
-  max-width:520px;margin:24px auto 48px;
-  line-height:1.75;
-}
-.hero-actions{
-  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:72px;
-}
-.btn-primary{
-  background:var(--red);color:#fff;
-  font-size:13px;font-weight:700;
-  padding:14px 32px;border-radius:99px;
-  text-decoration:none;
-  display:flex;align-items:center;gap:8px;
-  transition:all .2s;
-  box-shadow:0 4px 24px rgba(232,41,76,.28);
-}
-.btn-primary:hover{background:var(--red-dark);transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,41,76,.36)}
-.btn-secondary{
-  background:#fff;color:var(--black);
-  font-size:13px;font-weight:600;
-  padding:14px 32px;border-radius:99px;
-  text-decoration:none;
-  border:1.5px solid var(--border2);
-  display:flex;align-items:center;gap:8px;
-  transition:all .2s;
-}
-.btn-secondary:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
-.hero-stats-row{
-  display:flex;justify-content:center;
-  gap:0;
-  background:#fff;
-  border:1px solid var(--border2);
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:0 8px 48px rgba(0,0,0,.07);
-  max-width:600px;margin:0 auto;
-}
-.h-stat{
-  flex:1;padding:20px 24px;text-align:center;
-  position:relative;
-}
-.h-stat+.h-stat::before{
-  content:'';position:absolute;left:0;top:20%;bottom:20%;
-  width:1px;background:var(--border);
-}
-.h-stat-num{
-  font-family:var(--fd);font-size:34px;font-weight:900;
-  color:var(--red);line-height:1;
-}
-.h-stat-lbl{
-  font-family:var(--fm);font-size:10px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--gray-500);margin-top:4px;
-}
+/* ===== HERO ===== */
+#hero{min-height:96vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px 60px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 80% 55% at 50% -5%,rgba(232,41,76,.08),transparent 65%),#fff}
+.hgrid{position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(232,41,76,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(232,41,76,.03) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 65% at 50% 0%,black,transparent 80%);
+  will-change:transform}
+/* floating particles */
+.hpt{position:absolute;border-radius:50%;background:var(--red);pointer-events:none}
+@keyframes fp{0%,100%{transform:translateY(0) scale(1);opacity:.5}50%{transform:translateY(-20px) scale(1.3);opacity:.9}}
+.heyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);background:var(--rp);border:1px solid rgba(232,41,76,.2);padding:5px 16px;border-radius:99px;margin-bottom:28px;opacity:0}
+@keyframes ebIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.heyebrow{animation:ebIn .6s .2s ease forwards}
+.pring{width:7px;height:7px;position:relative;flex-shrink:0}
+.pring::before,.pring::after{content:'';position:absolute;inset:0;background:var(--red);border-radius:50%}
+.pring::after{background:transparent;border:1px solid var(--red);animation:pr 2.2s ease-out infinite}
+@keyframes pr{0%{transform:scale(1);opacity:1}100%{transform:scale(2.8);opacity:0}}
+/* H1 word reveal */
+.hw{display:inline-block;opacity:0;transform:translateY(36px) rotateX(-18deg);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1);transform-origin:bottom center}
+.hw.in{opacity:1;transform:translateY(0) rotateX(0)}
+h1{font-family:var(--fd);font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-.03em;line-height:.97;color:var(--blk);perspective:600px;margin-bottom:6px}
+h1 .red{color:var(--red);font-style:italic}
+.hsub{font-size:16px;color:var(--g700);max-width:520px;margin:22px auto 44px;line-height:1.75;opacity:0;animation:ebIn .6s .9s ease forwards}
+/* OS stack pills */
+.ostack{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:52px;opacity:0;animation:ebIn .6s 1.1s ease forwards}
+.opill{display:flex;align-items:center;gap:7px;padding:9px 18px;border:1.5px solid var(--br2);border-radius:99px;font-size:12px;font-weight:600;background:#fff;color:var(--blk);white-space:nowrap;transition:all .2s}
+.opill:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.opill.ceo{border-color:var(--red);color:var(--red);background:var(--rp)}
+.opill.cmo{border-color:var(--cmo);color:var(--cmo);background:var(--cmo-p)}
+.opill.cro{border-color:var(--cro);color:var(--cro);background:var(--cro-p)}
+.opill.coo{border-color:var(--coo);color:var(--coo);background:var(--coo-p)}
+.opill.cfo{border-color:var(--cfo);color:var(--cfo);background:var(--cfo-p)}
+.oarr{font-size:16px;color:var(--g500);margin:0 6px}
+/* Stats bar */
+.hstats{display:flex;justify-content:center;gap:0;background:#fff;border:1px solid var(--br2);border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.07);max-width:560px;margin:0 auto;opacity:0;animation:ebIn .6s 1.3s ease forwards}
+.hst{flex:1;padding:16px 18px;text-align:center;position:relative}
+.hst+.hst::before{content:'';position:absolute;left:0;top:22%;bottom:22%;width:1px;background:var(--br)}
+.hsn{font-family:var(--fd);font-size:30px;font-weight:900;color:var(--red);line-height:1}
+.hsl{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);margin-top:3px}
 
-/* SECTION BASE */
-section{padding:88px 0}
-.container{max-width:1020px;margin:0 auto;padding:0 48px}
-.sec-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--red);margin-bottom:16px;
-}
-.sec-tag::before{content:'';width:20px;height:1.5px;background:var(--red)}
-.sec-title{
-  font-family:var(--fd);
-  font-size:clamp(30px,4vw,50px);font-weight:800;
-  letter-spacing:-.025em;line-height:1.1;
-  color:var(--black);margin-bottom:14px;
-}
-.sec-body{font-size:15px;color:var(--gray-700);max-width:560px;line-height:1.8}
+/* ===== LAYOUT ===== */
+.sec{padding:80px 0}
+.sec-alt{background:var(--g50)}
+.wrap{max-width:1020px;margin:0 auto;padding:0 48px}
+.stag{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+.stag::before{content:'';width:18px;height:1.5px;background:var(--red);flex-shrink:0}
+.sh{font-family:var(--fd);font-size:clamp(26px,3.6vw,44px);font-weight:800;letter-spacing:-.025em;line-height:1.1;color:var(--blk);margin-bottom:12px}
+.sb{font-size:15px;color:var(--g700);max-width:540px;line-height:1.8}
 
-/* WHAT IS IT */
-.what-section{background:var(--gray-50)}
-.what-intro{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:56px}
-@media(max-width:680px){.what-intro{grid-template-columns:1fr;gap:32px}}
-.what-visual{
-  background:var(--black2);
-  border-radius:24px;
-  padding:36px;
-  position:relative;overflow:hidden;
-}
-.what-visual::before{
-  content:'';position:absolute;
-  top:-40px;right:-40px;
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(232,41,76,.2),transparent 70%);
-}
-.wv-label{
-  font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(232,41,76,.7);margin-bottom:20px;
-}
-.wv-quote{
-  font-family:var(--fd);font-style:italic;
-  font-size:22px;font-weight:700;
-  color:#fff;line-height:1.4;margin-bottom:24px;
-}
-.wv-tag{
-  display:inline-block;
-  font-family:var(--fm);font-size:11px;
-  color:rgba(255,255,255,.4);
-  padding:4px 12px;border-radius:6px;
-  border:1px solid rgba(255,255,255,.1);
-}
-.what-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:680px){.what-cards{grid-template-columns:1fr}}
-.wc{
-  background:#fff;border:1px solid var(--border2);
-  border-radius:18px;padding:24px;
-  position:relative;overflow:hidden;
-  transition:transform .2s,box-shadow .2s,border-color .2s;
-}
-.wc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:rgba(232,41,76,.2)}
-.wc.red-top::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--red-light))}
-.wc-icon{
-  width:44px;height:44px;border-radius:12px;
-  background:var(--red-pale);
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;margin-bottom:14px;
-}
-.wc h3{font-size:14px;font-weight:700;color:var(--black);margin-bottom:6px}
-.wc p{font-size:13px;color:var(--gray-700);line-height:1.7}
+/* ===== SCROLL REVEAL ===== */
+.sr{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.sr.in{opacity:1;transform:translateY(0)}
+.sr-l{opacity:0;transform:translateX(-24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.sr-l.in{opacity:1;transform:translateX(0)}
+.sr-r{opacity:0;transform:translateX(24px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1)}
+.sr-r.in{opacity:1;transform:translateX(0)}
+/* stagger delays */
+.d0{transition-delay:.0s}.d1{transition-delay:.08s}.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}
+.d6{transition-delay:.48s}.d7{transition-delay:.56s}
 
-/* INSTALL SECTION */
-.install-section{background:#fff}
-.install-track{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
-  background:#fff;border:1px solid var(--border2);
-  border-radius:24px;overflow:hidden;
-  box-shadow:0 8px 48px rgba(0,0,0,.06);
-  margin-top:48px;margin-bottom:56px;
-}
-@media(max-width:680px){.install-track{grid-template-columns:1fr}}
-.install-step{
-  padding:32px 28px;position:relative;
-}
-.install-step+.install-step{border-left:1px solid var(--border)}
-@media(max-width:680px){.install-step+.install-step{border-left:none;border-top:1px solid var(--border)}}
-.install-step-num{
-  font-family:var(--fd);font-size:52px;font-weight:900;
-  color:var(--red-pale2);line-height:1;margin-bottom:12px;
-  position:relative;z-index:1;
-}
-.install-step h3{font-size:14px;font-weight:700;color:var(--black);margin-bottom:8px}
-.install-step p{font-size:12px;color:var(--gray-700);line-height:1.7;margin-bottom:10px}
-.install-step code{
-  display:inline-block;
-  font-family:var(--fm);font-size:11px;
-  background:var(--red-pale);color:var(--red);
-  padding:3px 10px;border-radius:6px;
-  border:1px solid rgba(232,41,76,.15);
-}
+/* ===== WHAT IS IT ===== */
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+@media(max-width:640px){.what-grid{grid-template-columns:1fr}}
+.wc{background:#fff;border:1px solid var(--br2);border-radius:18px;padding:26px;transition:all .25s}
+.wc:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:rgba(232,41,76,.22)}
+.wc.hl{border-left:3px solid var(--red)}
+.wc-lbl{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.wc h3{font-size:14px;font-weight:700;color:var(--blk);margin-bottom:7px}
+.wc p{font-size:13px;color:var(--g700);line-height:1.75}
 
-.install-detail{
-  background:var(--gray-50);
-  border:1px solid var(--border2);
-  border-radius:20px;padding:36px 40px;
-  margin-top:0;
-}
-.install-detail h3{
-  font-family:var(--fd);font-size:22px;font-weight:800;
-  color:var(--black);margin-bottom:24px;
-}
-.install-steps-list{display:flex;flex-direction:column;gap:0}
-.ist{
-  display:flex;gap:20px;align-items:flex-start;
-  padding:16px 0;
-  border-bottom:1px solid var(--border);
-  position:relative;
-}
-.ist:last-child{border-bottom:none}
-.ist-left{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0}
-.ist-num{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--black);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--fm);font-size:12px;font-weight:500;
-  flex-shrink:0;position:relative;z-index:1;
-}
-.ist-num.r{background:var(--red)}
-.ist-line{width:1px;flex:1;min-height:20px;background:var(--border2);margin-top:4px}
-.ist-body h4{font-size:14px;font-weight:700;color:var(--black);margin-bottom:4px;margin-top:6px}
-.ist-body p{font-size:13px;color:var(--gray-700);line-height:1.7}
-.ist-body code{
-  font-family:var(--fm);font-size:12px;
-  background:var(--gray-200);color:var(--black2);
-  padding:2px 8px;border-radius:5px;
-}
-.ist-body .cmd{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--fm);font-size:12px;
-  background:var(--red-pale);color:var(--red);
-  padding:4px 12px;border-radius:8px;
-  border:1px solid rgba(232,41,76,.18);
-  margin-top:6px;font-weight:500;
-}
-.ist-body .tip{
-  font-size:11px;color:var(--gray-500);
-  background:var(--gray-100);
-  border-radius:8px;padding:8px 12px;
-  margin-top:8px;line-height:1.6;
-}
+/* ===== ARCHITECTURE ===== */
+.arch{background:var(--blk2);border-radius:24px;padding:44px;margin-top:48px;position:relative;overflow:hidden}
+.arch::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(232,41,76,.13),transparent 65%);pointer-events:none}
+.arch-hub{text-align:center;margin-bottom:36px}
+.arch-hub-box{display:inline-block;background:var(--red);color:#fff;font-family:var(--fd);font-size:19px;font-weight:800;padding:14px 40px;border-radius:14px;margin-bottom:10px;box-shadow:0 8px 32px rgba(232,41,76,.38)}
+.arch-hub-sub{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase}
+.arch-state{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.arch-sb{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 22px;text-align:center}
+.arch-sb h4{font-family:var(--fm);font-size:10px;color:rgba(232,41,76,.8);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.arch-sb p{font-size:12px;color:rgba(255,255,255,.5)}
+.arch-arr{font-size:20px;color:rgba(255,255,255,.2)}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;margin-bottom:36px}
+.arch-fs{font-family:var(--fm);font-size:11px;color:rgba(255,255,255,.45);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:99px;padding:4px 13px}
+.arch-fa{color:rgba(232,41,76,.6);font-size:13px}
+.arch-execs{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+@media(max-width:640px){.arch-execs{grid-template-columns:1fr 1fr}}
+.ae{border-radius:14px;padding:18px 14px;text-align:center}
+.ae.cmo{background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25)}
+.ae.cro{background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.25)}
+.ae.coo{background:rgba(217,119,6,.12);border:1px solid rgba(217,119,6,.25)}
+.ae.cfo{background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25)}
+.ae-t{font-family:var(--fd);font-size:17px;font-weight:800;margin-bottom:3px}
+.ae.cmo .ae-t{color:#A78BFA}.ae.cro .ae-t{color:#34D399}
+.ae.coo .ae-t{color:#FCD34D}.ae.cfo .ae-t{color:#60A5FA}
+.ae-r{font-family:var(--fm);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:11px}
+.ae-tags{display:flex;flex-direction:column;gap:5px}
+.ae-tag{font-size:11px;color:rgba(255,255,255,.45);background:rgba(255,255,255,.04);border-radius:6px;padding:4px 8px}
 
-/* SKILLS SECTION */
-.skills-section{background:var(--gray-50)}
-.dept-block{margin-bottom:48px}
-.dept-header{
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:20px;
-}
-.dept-pill{
-  font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  font-weight:500;padding:6px 16px;border-radius:99px;
-}
-.dp-red{background:var(--red);color:#fff}
-.dp-black{background:var(--black);color:#fff}
-.dp-outline{background:#fff;color:var(--gray-700);border:1px solid var(--border2)}
-.dept-line{flex:1;height:1px;background:var(--border2)}
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
-.sk{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:20px 22px;
-  transition:all .2s;
-  position:relative;overflow:hidden;
-}
-.sk:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.07);border-color:rgba(232,41,76,.25)}
-.sk-trigger{
-  font-family:var(--fm);font-size:10px;letter-spacing:.08em;
-  color:var(--red);margin-bottom:10px;
-  background:var(--red-pale);
-  padding:3px 10px;border-radius:6px;
-  display:inline-block;
-}
-.sk h3{font-size:14px;font-weight:700;color:var(--black);margin-bottom:5px}
-.sk p{font-size:12px;color:var(--gray-700);line-height:1.7}
-.sk-arrow{
-  position:absolute;bottom:16px;right:16px;
-  width:28px;height:28px;border-radius:50%;
-  background:var(--gray-100);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;color:var(--gray-500);
-  transition:background .2s,color .2s;
-}
-.sk:hover .sk-arrow{background:var(--red);color:#fff}
+/* ===== EXEC CARDS ===== */
+.ecgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+@media(max-width:640px){.ecgrid{grid-template-columns:1fr}}
+.ec{border-radius:20px;overflow:hidden;border:1.5px solid var(--br2);transition:all .25s}
+.ec:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
+.ec-top{padding:24px 26px 20px}
+.ec-top.cmo{background:linear-gradient(135deg,var(--cmo-p),#fafaf8)}
+.ec-top.cro{background:linear-gradient(135deg,var(--cro-p),#fafaf8)}
+.ec-top.coo{background:linear-gradient(135deg,var(--coo-p),#fafaf8)}
+.ec-top.cfo{background:linear-gradient(135deg,var(--cfo-p),#fafaf8)}
+.ec-badge{font-family:var(--fm);font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:500;padding:4px 12px;border-radius:99px;display:inline-block;margin-bottom:11px}
+.ec.cmo .ec-badge{color:var(--cmo);background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2)}
+.ec.cro .ec-badge{color:var(--cro);background:rgba(5,150,105,.1);border:1px solid rgba(5,150,105,.2)}
+.ec.coo .ec-badge{color:var(--coo);background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.2)}
+.ec.cfo .ec-badge{color:var(--cfo);background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.2)}
+.ec h3{font-family:var(--fd);font-size:21px;font-weight:800;color:var(--blk);margin-bottom:6px}
+.ec p{font-size:12px;color:var(--g700);line-height:1.7}
+.ec-body{background:#fff;padding:18px 26px;border-top:1px solid var(--br)}
+.ec-slbl{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);margin-bottom:9px}
+.ec-skill{display:flex;align-items:flex-start;gap:7px;margin-bottom:7px}
+.ec-skill-dot{width:4px;height:4px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0}
+.ec-skill-text{font-size:12px;color:var(--g700);line-height:1.55}
+.ec-skill-text strong{color:var(--blk);font-weight:600}
+.ec-agents{background:var(--g50);padding:14px 26px;border-top:1px solid var(--br)}
+.ec-arow{display:flex;gap:5px;flex-wrap:wrap}
+.ec-a{font-family:var(--fm);font-size:10px;color:var(--blk2);background:#fff;border:1px solid var(--br2);padding:3px 9px;border-radius:99px;transition:all .2s}
+.ec-a:hover{background:var(--red);color:#fff;border-color:var(--red)}
 
-/* AGENTS SECTION */
-.agents-section{background:#fff}
-.agents-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:640px){.agents-grid{grid-template-columns:1fr}}
-.ag{
-  border:1px solid var(--border2);
-  border-radius:20px;
-  overflow:hidden;
-  transition:transform .2s,box-shadow .2s;
-  background:#fff;
-}
-.ag:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.08)}
-.ag-top{
-  padding:22px 24px 16px;
-  border-bottom:1px solid var(--border);
-}
-.ag-cmd{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:var(--fm);font-size:11px;font-weight:500;
-  color:#fff;background:var(--black2);
-  padding:5px 14px;border-radius:8px;
-  margin-bottom:12px;
-}
-.ag-cmd .slash{color:var(--red)}
-.ag h3{font-size:15px;font-weight:700;color:var(--black);margin-bottom:6px}
-.ag p{font-size:12px;color:var(--gray-700);line-height:1.7}
-.ag-bottom{
-  padding:14px 24px;
-  display:flex;gap:6px;flex-wrap:wrap;
-  background:var(--gray-50);
-}
-.ag-conn{
-  font-family:var(--fm);font-size:10px;
-  color:var(--gray-700);
-  background:var(--gray-200);
-  padding:3px 10px;border-radius:99px;
-}
-
-/* WORKFLOWS SECTION */
-.workflows-section{background:var(--gray-50)}
-.wf-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.wf-tab{
-  font-size:12px;font-weight:600;
-  padding:8px 20px;border-radius:99px;
-  border:1.5px solid var(--border2);
-  background:#fff;color:var(--gray-700);
-  cursor:pointer;transition:all .2s;
-}
-.wf-tab.active,.wf-tab:hover{background:var(--red);color:#fff;border-color:var(--red)}
-.wf-card{
-  background:#fff;border:1px solid var(--border2);
-  border-radius:24px;overflow:hidden;
-}
-.wf-hero{
-  background:var(--black2);
-  padding:40px 44px;
-  display:flex;gap:28px;align-items:flex-start;
-  position:relative;overflow:hidden;
-}
-.wf-hero::before{
-  content:'';position:absolute;
-  right:-60px;top:-60px;
-  width:240px;height:240px;
-  background:radial-gradient(circle,rgba(232,41,76,.15),transparent 65%);
-}
-.wf-num{
-  font-family:var(--fd);font-size:64px;font-weight:900;
-  color:rgba(232,41,76,.18);line-height:1;flex-shrink:0;
-}
-.wf-hero-text h3{
-  font-family:var(--fd);font-size:26px;font-weight:800;
-  color:#fff;line-height:1.2;margin-bottom:8px;
-}
-.wf-hero-text p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.7}
-.wf-body{padding:36px 44px}
-.wf-steps{display:flex;flex-direction:column;gap:0}
-.wfs{
-  display:flex;gap:20px;align-items:flex-start;
-  padding:16px 0;border-bottom:1px solid var(--border);
-}
+/* ===== WORKFLOW TABS ===== */
+.wtabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:24px}
+.wtab{font-size:12px;font-weight:600;padding:8px 18px;border-radius:99px;border:1.5px solid var(--br2);background:#fff;color:var(--g700);cursor:pointer;transition:all .2s;user-select:none}
+.wtab:hover{border-color:var(--red);color:var(--red)}
+.wtab.on{background:var(--red);color:#fff;border-color:var(--red)}
+.wfpanel{display:none;background:#fff;border:1px solid var(--br2);border-radius:20px;overflow:hidden}
+.wfpanel.on{display:block;animation:wfin .3s cubic-bezier(.22,1,.36,1)}
+@keyframes wfin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.wfhero{background:var(--blk2);padding:32px 40px;display:flex;gap:18px;align-items:flex-start;position:relative;overflow:hidden}
+.wfhero::after{content:'';position:absolute;right:-50px;top:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(232,41,76,.12),transparent 65%)}
+.wfn{font-family:var(--fd);font-size:52px;font-weight:900;color:rgba(232,41,76,.14);line-height:1;flex-shrink:0}
+.wfhero h3{font-family:var(--fd);font-size:22px;font-weight:800;color:#fff;margin-bottom:6px;line-height:1.2}
+.wfhero p{font-size:13px;color:rgba(255,255,255,.48);line-height:1.7}
+.wfbody{padding:24px 40px}
+.wfsteps{display:flex;flex-direction:column}
+.wfs{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--br)}
 .wfs:last-child{border-bottom:none}
-.wfs-icon{
-  width:38px;height:38px;border-radius:10px;
-  background:var(--red-pale);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;flex-shrink:0;margin-top:2px;
-}
-.wfs-body h4{font-size:13px;font-weight:700;color:var(--black);margin-bottom:4px}
-.wfs-body p{font-size:12px;color:var(--gray-700);line-height:1.7}
-.wfs-body .tag{
-  display:inline-block;
-  font-family:var(--fm);font-size:11px;
-  background:var(--black);color:rgba(255,255,255,.7);
-  padding:2px 10px;border-radius:6px;margin-right:4px;
-}
-.wf-connectors{
-  padding:20px 44px;
-  border-top:1px solid var(--border);
-  background:var(--gray-50);
-  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
-}
-.wf-conn-label{font-family:var(--fm);font-size:10px;color:var(--gray-500);letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
-.wf-conn-tag{
-  font-family:var(--fm);font-size:11px;
-  background:#fff;color:var(--gray-700);
-  border:1px solid var(--border2);
-  padding:4px 12px;border-radius:99px;
-}
+.wfs-ic{width:34px;height:34px;border-radius:9px;background:var(--rp);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:1px}
+.wfs h4{font-size:13px;font-weight:700;color:var(--blk);margin-bottom:3px}
+.wfs p{font-size:12px;color:var(--g700);line-height:1.65}
+.cmd{font-family:var(--fm);font-size:11px;background:var(--blk2);color:rgba(255,255,255,.72);padding:2px 9px;border-radius:5px;margin-right:4px}
+.wffoot{padding:14px 40px;background:var(--g50);border-top:1px solid var(--br);display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.wfl{font-family:var(--fm);font-size:10px;color:var(--g500);letter-spacing:.1em;text-transform:uppercase;margin-right:8px}
+.wfc{font-family:var(--fm);font-size:11px;color:var(--g700);background:#fff;border:1px solid var(--br2);padding:3px 10px;border-radius:99px}
 
-/* CONNECTORS SECTION */
-.connectors-section{background:#fff}
-.conn-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:40px}
-@media(max-width:640px){.conn-grid{grid-template-columns:1fr 1fr}}
-.cng{
-  background:var(--gray-50);
-  border:1px solid var(--border);
-  border-radius:18px;padding:24px 18px;text-align:center;
-  transition:all .2s;
-}
-.cng:hover{border-color:rgba(232,41,76,.25);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.06)}
-.cng-icon{
-  width:52px;height:52px;border-radius:16px;
-  background:#fff;border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 14px;font-size:24px;
-}
-.cng h3{font-size:13px;font-weight:700;color:var(--black);margin-bottom:5px}
-.cng p{font-size:11px;color:var(--gray-500);line-height:1.6}
-.cng-badge{
-  display:inline-block;margin-top:10px;
-  font-family:var(--fm);font-size:10px;
-  color:var(--red);background:var(--red-pale);
-  padding:2px 10px;border-radius:99px;
-}
+/* ===== INSTALL ===== */
+.install-row{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:40px}
+@media(max-width:700px){.install-row{grid-template-columns:1fr 1fr}}
+.inst{background:var(--g50);border:1px solid var(--br);border-radius:16px;padding:18px 14px;transition:all .2s}
+.inst:hover{border-color:rgba(232,41,76,.25);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.06)}
+.inst-n{font-family:var(--fd);font-size:38px;font-weight:900;color:var(--rp2);line-height:1;margin-bottom:9px}
+.inst h3{font-size:13px;font-weight:700;color:var(--blk);margin-bottom:5px}
+.inst p{font-size:11px;color:var(--g700);line-height:1.6;margin-bottom:8px}
+.inst-c{font-family:var(--fm);font-size:11px;color:var(--red);background:var(--rp);border:1px solid rgba(232,41,76,.18);padding:3px 10px;border-radius:6px;display:inline-block}
+.inst-link{font-family:var(--fm);font-size:11px;color:var(--red);text-decoration:none;display:inline-flex;align-items:center;gap:4px;font-weight:500}
+.inst-link:hover{text-decoration:underline}
 
-/* DOWNLOAD CTA */
-.cta-section{
-  background:var(--black2);padding:88px 0;
-  position:relative;overflow:hidden;
-}
-.cta-section::before{
-  content:'';position:absolute;
-  left:50%;top:50%;transform:translate(-50%,-50%);
-  width:600px;height:600px;
-  background:radial-gradient(circle,rgba(232,41,76,.12),transparent 65%);
-}
-.cta-inner{text-align:center;position:relative}
-.cta-inner .sec-tag{color:rgba(232,41,76,.7);justify-content:center}
-.cta-inner .sec-tag::before{background:rgba(232,41,76,.4)}
-.cta-inner h2{
-  font-family:var(--fd);
-  font-size:clamp(32px,5vw,60px);font-weight:900;
-  color:#fff;letter-spacing:-.025em;
-  line-height:1.1;margin-bottom:16px;
-}
-.cta-inner p{font-size:15px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto 40px;line-height:1.8}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.cta-btn-white{
-  background:#fff;color:var(--black);
-  font-size:13px;font-weight:700;
-  padding:16px 36px;border-radius:99px;
-  text-decoration:none;
-  display:flex;align-items:center;gap:8px;
-  transition:all .2s;
-}
-.cta-btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(255,255,255,.15)}
-.cta-btn-outline{
-  background:transparent;color:#fff;
-  font-size:13px;font-weight:600;
-  padding:16px 36px;border-radius:99px;
-  text-decoration:none;
-  border:1.5px solid rgba(255,255,255,.2);
-  display:flex;align-items:center;gap:8px;
-  transition:all .2s;
-}
-.cta-btn-outline:hover{border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+/* ===== KEY COMMANDS ===== */
+.cmdgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px}
+@media(max-width:600px){.cmdgrid{grid-template-columns:1fr}}
+.cmdcard{background:#fff;border:1px solid var(--br2);border-radius:14px;padding:16px 18px;display:flex;gap:12px;align-items:flex-start;transition:all .2s}
+.cmdcard:hover{border-color:rgba(232,41,76,.2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.cmdcard-label{font-family:var(--fm);font-size:11px;color:var(--red);background:var(--rp);border:1px solid rgba(232,41,76,.15);padding:3px 10px;border-radius:6px;flex-shrink:0;white-space:nowrap}
+.cmdcard-text{font-size:12px;color:var(--g700);line-height:1.6}
+.cmdcard-text strong{color:var(--blk);display:block;margin-bottom:2px;font-size:13px}
 
-/* FOOTER */
-footer{
-  background:#fff;
-  border-top:1px solid var(--border);
-  padding:44px 48px;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
-}
-.f-brand{font-family:var(--fd);font-size:20px;font-weight:800;color:var(--red)}
-.f-by{font-size:13px;color:var(--gray-500);margin-top:2px}
-.f-meta{font-family:var(--fm);font-size:11px;color:var(--gray-500);letter-spacing:.08em}
+/* ===== RHYTHM ===== */
+.rhgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;margin-top:40px}
+@media(max-width:700px){.rhgrid{grid-template-columns:repeat(4,1fr)}}
+.rhday{border-radius:14px;padding:16px 12px;border:1px solid var(--br2);background:#fff;transition:all .25s}
+.rhday:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.rhday.mon{background:var(--blk2);border-color:var(--blk2)}
+.rhdl{font-family:var(--fm);font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px}
+.rhday.mon .rhdl{color:rgba(255,255,255,.4)}
+.rhdl{color:var(--g500)}
+.rha{font-size:11px;line-height:1.5;padding:5px 8px;border-radius:6px;background:var(--g100);color:var(--g700);margin-bottom:4px}
+.rhday.mon .rha{background:rgba(255,255,255,.07);color:rgba(255,255,255,.6)}
+.rha.red{background:var(--rp);color:var(--red)}
+.rha.pur{background:rgba(124,58,237,.08);color:var(--cmo)}
+.rha.grn{background:rgba(5,150,105,.08);color:var(--cro)}
+.rha.amb{background:rgba(217,119,6,.08);color:var(--coo)}
+.rha.blu{background:rgba(37,99,235,.08);color:var(--cfo)}
 
-/* ============================================
-   ANIMATION SYSTEM
-   ============================================ */
+/* ===== CONNECTORS ===== */
+.cgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:36px}
+@media(max-width:600px){.cgrid{grid-template-columns:1fr 1fr}}
+.cc{background:var(--g50);border:1px solid var(--br);border-radius:16px;padding:20px 14px;text-align:center;transition:all .25s}
+.cc:hover{border-color:rgba(232,41,76,.25);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.cc-ic{width:46px;height:46px;border-radius:14px;background:#fff;border:1px solid var(--br2);display:flex;align-items:center;justify-content:center;margin:0 auto 11px;font-size:21px;transition:transform .2s}
+.cc:hover .cc-ic{transform:scale(1.1)}
+.cc h3{font-size:13px;font-weight:700;color:var(--blk);margin-bottom:4px}
+.cc p{font-size:11px;color:var(--g500);line-height:1.55}
+.cc-b{font-family:var(--fm);font-size:10px;color:var(--red);background:var(--rp);padding:2px 9px;border-radius:99px;display:inline-block;margin-top:8px}
 
-/* Base fade-up — all scroll reveals */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(28px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes fadeIn{
-  from{opacity:0}to{opacity:1}
-}
-@keyframes slideLeft{
-  from{opacity:0;transform:translateX(32px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes slideRight{
-  from{opacity:0;transform:translateX(-32px)}
-  to{opacity:1;transform:translateX(0)}
-}
-@keyframes scaleIn{
-  from{opacity:0;transform:scale(.92)}
-  to{opacity:1;transform:scale(1)}
-}
+/* ===== CTA ===== */
+.cta-sec{background:var(--blk2);padding:80px 0;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(232,41,76,.1),transparent 65%);pointer-events:none}
+/* orbiting orbs */
+@keyframes orb{0%{transform:translate(-50%,-50%) rotate(0deg) translateX(180px) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg) translateX(180px) rotate(-360deg)}}
+.orb{position:absolute;left:50%;top:50%;width:10px;height:10px;background:var(--red);border-radius:50%;filter:blur(3px);pointer-events:none}
+.orb:nth-child(1){animation:orb 7s linear infinite}
+.orb:nth-child(2){animation:orb 7s -2.3s linear infinite;opacity:.5}
+.orb:nth-child(3){animation:orb 7s -4.6s linear infinite;opacity:.3}
+.cta-in{text-align:center;position:relative}
+.cta-stag{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,41,76,.7);margin-bottom:16px}
+.cta-stag::before{content:'';width:18px;height:1.5px;background:rgba(232,41,76,.4)}
+.cta-in h2{font-family:var(--fd);font-size:clamp(28px,5vw,54px);font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1.1;margin-bottom:14px}
+.cta-in p{font-size:14px;color:rgba(255,255,255,.42);max-width:420px;margin:0 auto 36px;line-height:1.8}
+.cta-plugins{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.cp{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:11px 18px;text-align:center;transition:all .2s}
+.cp:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.cp-n{font-family:var(--fd);font-size:15px;font-weight:800;margin-bottom:2px}
+.cp-n.red{color:var(--red)}.cp-n.pur{color:#A78BFA}
+.cp-n.grn{color:#34D399}.cp-n.amb{color:#FCD34D}.cp-n.blu{color:#60A5FA}
+.cp-s{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,.3)}
+.cta-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+.cb-w{background:#fff;color:var(--blk);font-size:13px;font-weight:700;padding:14px 30px;border-radius:99px;text-decoration:none;display:flex;align-items:center;gap:7px;transition:all .2s}
+.cb-w:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,255,255,.13)}
+.cb-o{background:transparent;color:#fff;font-size:13px;font-weight:600;padding:14px 30px;border-radius:99px;text-decoration:none;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;gap:7px;transition:all .2s}
+.cb-o:hover{border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
 
-.fu{opacity:0;animation:fadeUp .6s cubic-bezier(.22,1,.36,1) forwards}
-.fi{opacity:0;animation:fadeIn .5s ease forwards}
-.sl{opacity:0;animation:slideLeft .6s cubic-bezier(.22,1,.36,1) forwards}
-.sr{opacity:0;animation:slideRight .6s cubic-bezier(.22,1,.36,1) forwards}
-.sc{opacity:0;animation:scaleIn .5s cubic-bezier(.22,1,.36,1) forwards}
-.paused{animation-play-state:paused!important}
+/* ===== FOOTER ===== */
+footer{background:#fff;border-top:1px solid var(--br);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.fb{font-family:var(--fd);font-size:19px;font-weight:800;color:var(--red)}
+.fby{font-size:13px;color:var(--g500);margin-top:2px}
+.fm2{font-family:var(--fm);font-size:11px;color:var(--g500);letter-spacing:.06em}
 
-.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}
-.d4{animation-delay:.26s}.d5{animation-delay:.33s}.d6{animation-delay:.40s}
-.d7{animation-delay:.47s}.d8{animation-delay:.54s}
-
-/* ---- HERO ANIMATIONS ---- */
-
-/* Floating particles on hero grid */
-@keyframes floatDot{
-  0%,100%{transform:translateY(0) scale(1);opacity:.6}
-  50%{transform:translateY(-18px) scale(1.3);opacity:1}
-}
-.hero-particle{
-  position:absolute;
-  width:4px;height:4px;
-  background:var(--red);border-radius:50%;
-  animation:floatDot var(--dur,4s) ease-in-out infinite;
-  animation-delay:var(--del,0s);
-  opacity:.4;
-  pointer-events:none;
-}
-
-/* Hero word-by-word reveal */
-@keyframes wordReveal{
-  from{opacity:0;transform:translateY(40px) rotateX(-20deg)}
-  to{opacity:1;transform:translateY(0) rotateX(0)}
-}
-.hero-word{
-  display:inline-block;
-  opacity:0;
-  animation:wordReveal .7s cubic-bezier(.22,1,.36,1) forwards;
-  animation-play-state:paused;
-}
-
-/* Eyebrow shimmer */
-@keyframes shimmer{
-  0%{background-position:-200% center}
-  100%{background-position:200% center}
-}
-.hero-eyebrow-shimmer{
-  background:linear-gradient(90deg,var(--red) 0%,var(--red-light) 40%,#fff 50%,var(--red-light) 60%,var(--red) 100%);
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:shimmer 3s linear infinite;
-  animation-delay:1.2s;
-}
-
-/* Stats count-up readiness */
-.h-stat-num[data-target]{transition:none}
-
-/* ---- INSTALL STEP LINE DRAW ---- */
-@keyframes lineDraw{
-  from{transform:scaleY(0);transform-origin:top}
-  to{transform:scaleY(1);transform-origin:top}
-}
-.ist-line{
-  transform:scaleY(0);transform-origin:top;
-  transition:transform .5s cubic-bezier(.22,1,.36,1);
-}
-.ist-line.drawn{transform:scaleY(1)}
-
-/* Install step icon pulse on entry */
-@keyframes stepPop{
-  0%{transform:scale(0.5);opacity:0}
-  70%{transform:scale(1.15)}
-  100%{transform:scale(1);opacity:1}
-}
-.ist-num{transform:scale(0.5);opacity:0;transition:none}
-.ist-num.popped{animation:stepPop .45s cubic-bezier(.22,1,.36,1) forwards}
-
-/* ---- SKILL CARD STAGGER ---- */
-.sk{
-  opacity:0;transform:translateY(20px);
-  transition:opacity .5s cubic-bezier(.22,1,.36,1),
-             transform .5s cubic-bezier(.22,1,.36,1),
-             box-shadow .2s,border-color .2s;
-}
-.sk.revealed{opacity:1;transform:translateY(0)}
-
-/* Skill card arrow bounce on hover */
-.sk:hover .sk-arrow{
-  animation:arrowBounce .4s cubic-bezier(.22,1,.36,1);
-}
-@keyframes arrowBounce{
-  0%{transform:translateX(0)}
-  40%{transform:translateX(5px)}
-  70%{transform:translateX(-2px)}
-  100%{transform:translateX(0)}
-}
-
-/* ---- AGENT CARD ALTERNATING SLIDE ---- */
-.ag{opacity:0;transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1),box-shadow .2s}
-.ag.from-left{transform:translateX(-24px)}
-.ag.from-right{transform:translateX(24px)}
-.ag.revealed{opacity:1;transform:translateX(0)}
-
-/* ---- WORKFLOW PANEL TRANSITION ---- */
-.wf-card{
-  display:none;
-  opacity:0;
-  transform:translateY(12px);
-  transition:opacity .35s ease,transform .35s cubic-bezier(.22,1,.36,1);
-}
-.wf-card.active{
-  display:block;
-  animation:wfEnter .35s cubic-bezier(.22,1,.36,1) forwards;
-}
-@keyframes wfEnter{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ---- CTA ORBITING GLOW ---- */
-@keyframes orbitGlow{
-  0%{transform:translate(-50%,-50%) rotate(0deg) translateX(160px) rotate(0deg);opacity:.6}
-  50%{opacity:1}
-  100%{transform:translate(-50%,-50%) rotate(360deg) translateX(160px) rotate(-360deg);opacity:.6}
-}
-.cta-orb{
-  position:absolute;
-  width:12px;height:12px;
-  background:var(--red);border-radius:50%;
-  left:50%;top:50%;
-  animation:orbitGlow 6s linear infinite;
-  filter:blur(3px);
-  pointer-events:none;
-}
-.cta-orb:nth-child(2){animation-delay:-2s;opacity:.4}
-.cta-orb:nth-child(3){animation-delay:-4s;opacity:.3}
-
-/* ---- MAGNETIC BUTTON ---- */
-.btn-magnetic{transition:transform .2s cubic-bezier(.22,1,.36,1)}
-
-/* ---- NAV ACTIVE INDICATOR ---- */
-.nav-indicator{
-  position:absolute;
-  bottom:-1px;left:0;
-  height:2px;background:var(--red);
-  border-radius:2px;
-  transition:left .3s cubic-bezier(.22,1,.36,1),width .3s cubic-bezier(.22,1,.36,1);
-  pointer-events:none;
-}
-nav{position:sticky;top:0;z-index:100}
-
-/* ---- STAT CARD ENTRANCE ---- */
-.h-stat{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
-.h-stat.revealed{opacity:1;transform:translateY(0)}
-
-/* ---- WHAT CARDS ---- */
-.wc{opacity:0;transform:translateY(18px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),box-shadow .2s,border-color .2s}
-.wc.revealed{opacity:1;transform:translateY(0)}
-
-/* ---- CONNECTOR CARDS ---- */
-.cng{opacity:0;transform:translateY(14px);transition:opacity .45s cubic-bezier(.22,1,.36,1),transform .45s cubic-bezier(.22,1,.36,1),border-color .2s,box-shadow .2s}
-.cng.revealed{opacity:1;transform:translateY(0)}
-
-/* ---- DEPT BLOCK HEADER ---- */
-.dept-block{opacity:0;transform:translateY(10px);transition:opacity .4s ease,transform .4s ease}
-.dept-block.revealed{opacity:1;transform:translateY(0)}
-
-/* ---- SECTION TITLE UNDERLINE DRAW ---- */
-@keyframes underlineDraw{
-  from{width:0}to{width:100%}
-}
-.sec-title-anim{position:relative;display:inline-block}
-.sec-title-anim::after{
-  content:'';
-  position:absolute;bottom:-4px;left:0;
-  height:2px;width:0;
-  background:linear-gradient(90deg,var(--red),var(--red-light));
-  border-radius:2px;
-  transition:width .6s cubic-bezier(.22,1,.36,1) .2s;
-}
-.sec-title-anim.drawn::after{width:100%}
-
-/* ---- REDUCED MOTION ---- */
+/* ===== REDUCED MOTION ===== */
 @media(prefers-reduced-motion:reduce){
-  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .hw{transition:none!important}
+  .sr,.sr-l,.sr-r{transition:none!important;opacity:1!important;transform:none!important}
+  .heyebrow,.hsub,.ostack,.hstats{animation:none!important;opacity:1!important}
 }
-
-/* DIVIDER */
-.section-divider{height:1px;background:var(--border);margin:0}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="main-nav">
-  <div class="nav-brand">
-    <div class="nav-dot"></div>
-    AI CEO Brain
+<nav id="nav">
+  <div class="nb"><div class="nd"></div>AI CEO</div>
+  <div class="nl">
+    <a href="#what">Overview</a>
+    <a href="#executives">Executives</a>
+    <a href="#workflows">Workflows</a>
+    <a href="#rhythm">Rhythm</a>
+    <a href="#install">Install</a>
   </div>
-  <div class="nav-links" id="nav-links" style="position:relative">
-    <div class="nav-indicator" id="nav-indicator"></div>
-    <a href="#what" data-section="what">What it is</a>
-    <a href="#install" data-section="install">Install</a>
-    <a href="#skills" data-section="skills">Skills</a>
-    <a href="#agents" data-section="agents">Agents</a>
-    <a href="#workflows" data-section="workflows">Workflows</a>
-  </div>
-  <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="nav-cta">
-    &#8599; Download
-  </a>
+  <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="nc">&#8599; Download</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-grid-bg"></div>
-  <!-- Floating particles -->
-  <div class="hero-particle" style="left:12%;top:25%;--dur:4.2s;--del:0s"></div>
-  <div class="hero-particle" style="left:24%;top:60%;--dur:5.1s;--del:.8s"></div>
-  <div class="hero-particle" style="left:72%;top:20%;--dur:3.8s;--del:.3s"></div>
-  <div class="hero-particle" style="left:85%;top:55%;--dur:4.7s;--del:1.2s"></div>
-  <div class="hero-particle" style="left:50%;top:80%;--dur:5.5s;--del:.5s;width:6px;height:6px"></div>
-  <div class="hero-particle" style="left:38%;top:15%;--dur:4.0s;--del:1.8s;width:3px;height:3px;opacity:.25"></div>
-  <div class="hero-particle" style="left:92%;top:38%;--dur:6.0s;--del:.9s;width:3px;height:3px"></div>
-  <div class="hero-eyebrow fi d1">
-    <div class="pulse-ring"></div>
-    <span class="hero-eyebrow-shimmer">Purely Personal by Daniel Paul</span>
-  </div>
-  <h1 style="perspective:600px">
-    <span class="hero-word" style="--wi:0" data-delay="200">AI</span><br>
-    <span class="hero-word line2" style="--wi:1" data-delay="350">CEO</span>
-    <span class="hero-word line2" style="--wi:2" data-delay="480"> Brain</span>
+<section id="hero">
+  <div class="hgrid" id="hgrid"></div>
+  <!-- particles injected by JS -->
+  <div class="heyebrow"><div class="pring"></div>Purely Personal by Daniel Paul · v2.0</div>
+  <h1 style="perspective:700px">
+    <span class="hw" data-d="300">The</span>
+    <span class="hw" data-d="420"> AI</span><br>
+    <span class="hw red" data-d="560">CEO</span>
   </h1>
-  <p class="hero-sub fu d2">Danny's exact Monday business thinking system. 17 skills. 10 autonomous agents. Every answer in Danny's voice. Every output a branded file.</p>
-  <div class="hero-actions fu d3">
-    <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="btn-primary btn-magnetic">
-      &#8599; Download Plugin
-    </a>
-    <a href="#install" class="btn-secondary btn-magnetic">
-      &#8595; How to install
-    </a>
+  <p class="hsub">One plugin. Five departments. 51 skills. 86 agents. CEO Brain sets the strategy. Four executives run their domains. 27 LinkedIn marketing skills drive inbound. Sell-by-Chat wired into CRO. All in Danny's voice.</p>
+  <div class="ostack">
+    <div class="opill ceo">&#129504; CEO Brain</div>
+    <div class="oarr">+</div>
+    <div class="opill cmo">&#128227; AI CMO</div>
+    <div class="oarr">+</div>
+    <div class="opill cro">&#128200; AI CRO</div>
+    <div class="oarr">+</div>
+    <div class="opill coo">&#9881; AI COO</div>
+    <div class="oarr">+</div>
+    <div class="opill cfo">&#128184; AI CFO</div>
+    <div class="oarr">+</div>
+    <div class="opill" style="border-color:#DB2777;color:#DB2777;background:#FDF2F8">&#128247; LinkedIn Marketing</div>
   </div>
-  <div class="hero-stats-row fu d4">
-    <div class="h-stat">
-      <div class="h-stat-num" data-target="17">17</div>
-      <div class="h-stat-lbl">Skills</div>
-    </div>
-    <div class="h-stat">
-      <div class="h-stat-num" data-target="10">10</div>
-      <div class="h-stat-lbl">Agents</div>
-    </div>
-    <div class="h-stat">
-      <div class="h-stat-num" data-target="5">5</div>
-      <div class="h-stat-lbl">Connectors</div>
-    </div>
-    <div class="h-stat">
-      <div class="h-stat-num" data-target="79">79</div>
-      <div class="h-stat-lbl">Frameworks</div>
-    </div>
+  <div class="hstats">
+    <div class="hst"><div class="hsn" data-count="51">51</div><div class="hsl">Skills</div></div>
+    <div class="hst"><div class="hsn" data-count="86">86</div><div class="hsl">Agents</div></div>
+    <div class="hst"><div class="hsn" data-count="5">5</div><div class="hsl">Departments</div></div>
+    <div class="hst"><div class="hsn" data-count="1">1</div><div class="hsl">Plugin</div></div>
   </div>
 </section>
 
 <!-- WHAT IS IT -->
-<section class="what-section" id="what">
-  <div class="container">
-    <div class="what-intro">
-      <div>
-        <div class="sec-tag">What is it</div>
-        <h2 class="sec-title"><span class="sec-title-anim">Not a chatbot.</span><br>Danny's brain<br>plugged in.</h2>
-        <p class="sec-body">A Claude Cowork plugin that installs once and becomes a permanent part of how you work. No context to paste. No re-explaining. Just ask and get Danny's answer with the next step built in.</p>
+<section class="sec sec-alt" id="what">
+  <div class="wrap">
+    <div class="stag sr d0">Overview</div>
+    <h2 class="sh sr d1">One plugin.<br>One operating system.</h2>
+    <p class="sb sr d2">AI CEO Brain sets the strategy. The four executives run their departments. They share one business-state.md so every executive knows what every other executive decided.</p>
+    <div class="what-grid">
+      <div class="wc hl sr d1">
+        <div class="wc-lbl">AI CEO Brain · The Hub</div>
+        <h3>Sets the strategy. Runs the week.</h3>
+        <p>Monday sessions, quarterly planning, the Founder's Board, and 17 skills across all 5 business pillars. Writes business context to the shared state after every session so all 4 executives start briefed.</p>
       </div>
-      <div class="what-visual fu d1">
-        <div class="wv-label">Danny's voice · AI CEO Brain</div>
-        <div class="wv-quote">"Yeah. So here's the thing. You're not getting leads because you have attention without a system."</div>
-        <span class="wv-tag">Direct. Specific. Action-first.</span>
+      <div class="wc sr d2">
+        <div class="wc-lbl">4 Executives · The Departments</div>
+        <h3>Each runs their domain. All share the same brain.</h3>
+        <p>CMO owns marketing and LinkedIn. CRO owns pipeline and sales. COO owns systems and delegation. CFO owns pricing and cash flow. Each reads the CEO Brain state and writes findings back.</p>
+      </div>
+      <div class="wc sr d3">
+        <div class="wc-lbl">The Shared State</div>
+        <h3>One file. One plugin read it. Five write to it.</h3>
+        <p>business-state.md lives in Notion and Google Drive. CEO Brain writes the strategy. Each executive adds their department data. Every plugin reads the full picture with no re-explaining required.</p>
+      </div>
+      <div class="wc hl sr d4">
+        <div class="wc-lbl">Danny's Voice</div>
+        <h3>Every answer sounds like a 1-on-1 with Danny.</h3>
+        <p>All 1 plugin share the same voice DNA: 12,133 statements, 659,657 words from Danny's actual speech. Short sentences. Action first. No AI patterns. The next step always built in.</p>
       </div>
     </div>
-    <div class="what-cards">
-      <div class="wc red-top fu d1">
-        <div class="wc-icon">&#129504;</div>
-        <h3>It thinks like Danny</h3>
-        <p>79 thinking models across 5 pillars. 8 advisor frameworks. Real client intelligence from Purely Personal's actual client base.</p>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="sec" id="arch">
+  <div class="wrap">
+    <div class="stag sr d0">How They Connect</div>
+    <h2 class="sh sr d1">One shared state.<br>All departments reading it.</h2>
+    <p class="sb sr d2">CEO Brain writes the strategy. Each executive reads it, runs their session, and writes findings back. The state grows richer every week.</p>
+    <div class="arch sr d2">
+      <div class="arch-hub">
+        <div class="arch-hub-box">&#129504; AI CEO Brain</div>
+        <div class="arch-hub-sub">Sets strategy · Runs Monday ritual · Writes + reads business state</div>
       </div>
-      <div class="wc fu d2">
-        <div class="wc-icon">&#129302;</div>
-        <h3>It works autonomously</h3>
-        <p>10 agents that connect to Gmail, Notion, Drive, Calendar, Apify and do the work without you doing each step manually.</p>
+      <div class="arch-state">
+        <div class="arch-sb"><h4>Notion</h4><p>/AI Operating System/<br>business-state.md</p></div>
+        <div class="arch-arr">&#8596;</div>
+        <div class="arch-sb"><h4>Google Drive</h4><p>/AI Executives/<br>business-state.md</p></div>
       </div>
-      <div class="wc fu d3">
-        <div class="wc-icon">&#127908;</div>
-        <h3>It talks like Danny</h3>
-        <p>Short sentences. Action first. No corporate jargon. No AI patterns. Every response sounds like a 1-on-1 call with Danny.</p>
+      <div class="arch-flow">
+        <div class="arch-fs">CEO Brain writes state</div><div class="arch-fa">&#8594;</div>
+        <div class="arch-fs">Executives /sync-ceo-brain</div><div class="arch-fa">&#8594;</div>
+        <div class="arch-fs">Executives run sessions</div><div class="arch-fa">&#8594;</div>
+        <div class="arch-fs">Executives /update-state</div><div class="arch-fa">&#8594;</div>
+        <div class="arch-fs">CEO Brain reads next Monday</div>
       </div>
-      <div class="wc red-top fu d4">
-        <div class="wc-icon">&#128196;</div>
-        <h3>It outputs like a product</h3>
-        <p>Every substantive answer produces a branded Purely Personal HTML file. Downloadable, shareable, premium.</p>
+      <div class="arch-execs">
+        <div class="ae cmo">
+          <div class="ae-t">CMO</div><div class="ae-r">Marketing</div>
+          <div class="ae-tags">
+            <div class="ae-tag">Content strategy</div>
+            <div class="ae-tag">LinkedIn 2026 data</div>
+            <div class="ae-tag">Lead magnet system</div>
+            <div class="ae-tag">Campaign runner</div>
+          </div>
+        </div>
+        <div class="ae cro">
+          <div class="ae-t">CRO</div><div class="ae-r">Revenue</div>
+          <div class="ae-tags">
+            <div class="ae-tag">Pipeline analysis</div>
+            <div class="ae-tag">DM sequences</div>
+            <div class="ae-tag">Apollo + Apify leads</div>
+            <div class="ae-tag">Revenue forecast</div>
+          </div>
+        </div>
+        <div class="ae coo">
+          <div class="ae-t">COO</div><div class="ae-r">Operations</div>
+          <div class="ae-tags">
+            <div class="ae-tag">Process audit</div>
+            <div class="ae-tag">SOP builder</div>
+            <div class="ae-tag">Client health monitor</div>
+            <div class="ae-tag">Team pulse</div>
+          </div>
+        </div>
+        <div class="ae cfo">
+          <div class="ae-t">CFO</div><div class="ae-r">Finance</div>
+          <div class="ae-tags">
+            <div class="ae-tag">Revenue health</div>
+            <div class="ae-tag">Offer P&amp;L</div>
+            <div class="ae-tag">Profitability scan</div>
+            <div class="ae-tag">Cash forecast</div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVES -->
+<section class="sec sec-alt" id="executives">
+  <div class="wrap">
+    <div class="stag sr d0">4 Executives</div>
+    <h2 class="sh sr d1">Each executive.<br>Full depth. Full autonomy.</h2>
+    <p class="sb sr d2">Every executive has 3 skills and 12 agents. Sell-by-Chat is fully embedded in the AI CRO. Best copywriting frameworks are embedded in the AI CMO. Operational and financial thinking frameworks run through the COO and CFO. All executives share the same business state.</p>
+    <div class="ecgrid">
+
+      <div class="ec cmo sr d1">
+        <div class="ec-top cmo">
+          <span class="ec-badge">Chief Marketing Officer</span>
+          <h3>AI CMO</h3>
+          <p>Content strategy, LinkedIn growth (2026 data), competitor scraping via Apify, own profile analytics, lead magnet system, campaign planning. Copywriting frameworks (PAS, BAB, Before-After-Bridge, 4Ps) embedded in every output without naming them.</p>
+        </div>
+        <div class="ec-body">
+          <div class="ec-slbl">3 Skills</div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cmo-executive</strong>: Full CMO session: diagnosis, pillars, calendar, lead magnet, profile audit</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cmo-deep-dive</strong>: 6-part breakdown of any marketing or LinkedIn concept</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cmo-quick-wins</strong>: Immediate content and lead generation actions this week</div></div>
+        </div>
+        <div class="ec-agents">
+          <div class="ec-slbl" style="margin-bottom:8px">12 Agents</div>
+          <div class="ec-arow">
+            <span class="ec-a">/cmo-content-campaign</span><span class="ec-a">/cmo-competitor-intelligence</span>
+            <span class="ec-a">/cmo-profile-analytics-report</span><span class="ec-a">/cmo-lead-magnet-content</span>
+            <span class="ec-a">/cmo-post-virality-capture</span><span class="ec-a">/cmo-newsletter-to-linkedin</span>
+            <span class="ec-a">/cmo-linkedin-profile-rewrite</span><span class="ec-a">/cmo-sync-ceo-brain</span>
+            <span class="ec-a">/cmo-update-state</span><span class="ec-a">/cmo-weekly-executive-report</span>
+            <span class="ec-a">/cmo-connect-services</span><span class="ec-a">/cmo-preflight-check</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ec cro sr d2">
+        <div class="ec-top cro">
+          <span class="ec-badge">Chief Revenue Officer</span>
+          <h3>AI CRO</h3>
+          <p>Pipeline management with Sell-by-Chat fully embedded. LVQ framework, A-B gap method, 5-touch follow-up, and character-counted DM sequences in every output. Apollo lead lists, Apify prospect scraping, objection library, referral engine, cold email sequences, discovery call prep.</p>
+        </div>
+        <div class="ec-body">
+          <div class="ec-slbl">3 Skills</div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cro-executive</strong>: Full CRO session with Sell-by-Chat embedded: pipeline diagnosis, 5-touch DM sequence with character counts, objection playbook, discovery call guide</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cro-deep-dive</strong>: 6-part breakdown of any sales concept</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cro-quick-wins</strong>: Immediate sales actions using Sell-by-Chat playbooks: more leads, cold deals, close faster</div></div>
+        </div>
+        <div class="ec-agents">
+          <div class="ec-slbl" style="margin-bottom:8px">12 Agents</div>
+          <div class="ec-arow">
+            <span class="ec-a">/cro-pipeline-scan</span><span class="ec-a">/cro-prospect-research</span>
+            <span class="ec-a">/cro-proposal-builder</span><span class="ec-a">/cro-referral-engine</span>
+            <span class="ec-a">/cro-discovery-call-prep</span><span class="ec-a">/cro-objection-library</span>
+            <span class="ec-a">/cro-cold-email-sequence</span><span class="ec-a">/cro-sync-ceo-brain</span>
+            <span class="ec-a">/cro-update-state</span><span class="ec-a">/cro-weekly-executive-report</span>
+            <span class="ec-a">/cro-connect-services</span><span class="ec-a">/cro-preflight-check</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ec coo sr d3">
+        <div class="ec-top coo">
+          <span class="ec-badge">Chief Operations Officer</span>
+          <h3>AI COO</h3>
+          <p>Process audits, SOP builder, delegation matrix (DO/DELEGATE/AUTOMATE/ELIMINATE), team capacity mapping, client health monitoring. Bottleneck diagnosis uses Before-After-Bridge structure. Clarity-vs-capability diagnostic applied before naming any performance problem.</p>
+        </div>
+        <div class="ec-body">
+          <div class="ec-slbl">3 Skills</div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-coo-executive</strong>: Full COO session: bottleneck diagnosis, process audit, delegation matrix, SOP, team map</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-coo-deep-dive</strong>: 6-part breakdown of any operations concept</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-coo-quick-wins</strong>: Immediate delegation and systems actions this week</div></div>
+        </div>
+        <div class="ec-agents">
+          <div class="ec-slbl" style="margin-bottom:8px">12 Agents</div>
+          <div class="ec-arow">
+            <span class="ec-a">/coo-sop-system</span><span class="ec-a">/coo-team-health</span>
+            <span class="ec-a">/coo-client-health</span><span class="ec-a">/coo-hiring-brief</span>
+            <span class="ec-a">/coo-async-communication</span><span class="ec-a">/coo-bottleneck-sprint</span>
+            <span class="ec-a">/coo-delegation-system</span><span class="ec-a">/coo-sync-ceo-brain</span>
+            <span class="ec-a">/coo-update-state</span><span class="ec-a">/coo-weekly-executive-report</span>
+            <span class="ec-a">/coo-connect-services</span><span class="ec-a">/coo-preflight-check</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ec cfo sr d4">
+        <div class="ec-top cfo">
+          <span class="ec-badge">Chief Financial Officer</span>
+          <h3>AI CFO</h3>
+          <p>Revenue health dashboard with RAG status, true offer P&amp;L (founder time cost included), 3-month 3-scenario cash flow forecast, pricing recommendations with exact client language. Promise-Picture-Proof-Path structure embedded in every financial diagnosis.</p>
+        </div>
+        <div class="ec-body">
+          <div class="ec-slbl">3 Skills</div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cfo-executive</strong>: Full CFO session with financial frameworks embedded: revenue dashboard (RAG), true offer P&amp;L, 3-scenario forecast, pricing language</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cfo-deep-dive</strong>: 6-part breakdown of any finance concept</div></div>
+          <div class="ec-skill"><div class="ec-skill-dot"></div><div class="ec-skill-text"><strong>ai-cfo-quick-wins</strong>: Immediate pricing and cash flow actions this week</div></div>
+        </div>
+        <div class="ec-agents">
+          <div class="ec-slbl" style="margin-bottom:8px">12 Agents</div>
+          <div class="ec-arow">
+            <span class="ec-a">/cfo-revenue-dashboard</span><span class="ec-a">/cfo-pricing-audit</span>
+            <span class="ec-a">/cfo-quarterly-forecast</span><span class="ec-a">/cfo-cashflow-crisis</span>
+            <span class="ec-a">/cfo-recurring-revenue-builder</span><span class="ec-a">/cfo-financial-model</span>
+            <span class="ec-a">/cfo-offer-stack-audit</span><span class="ec-a">/cfo-sync-ceo-brain</span>
+            <span class="ec-a">/cfo-update-state</span><span class="ec-a">/cfo-weekly-executive-report</span>
+            <span class="ec-a">/cfo-connect-services</span><span class="ec-a">/cfo-preflight-check</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="sec" style="background:#fff;padding:60px 0 40px">
+  <div class="wrap">
+    <div style="background:#ECFDF5;border:1.5px solid rgba(5,150,105,.25);border-radius:18px;padding:30px 36px">
+      <div style="font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#059669;margin-bottom:12px">Sell-by-Chat: Embedded in AI CRO</div>
+      <h3 style="font-family:var(--fd);font-size:20px;font-weight:800;color:var(--blk);margin-bottom:8px">Stop selling. Start serving. The sale is the side effect.</h3>
+      <p style="font-size:13px;color:var(--g700);line-height:1.75;max-width:640px;margin-bottom:20px">Cold outreach converts at 1.7%. Inbound-led outbound converts at 14.6%, an 8.5× difference. The AI CRO is built around that gap. Every DM sequence, follow-up, objection reframe, and close in the CRO follows the Sell-by-Chat playbook, with character counts, personality calibration, and Volume Tax protection on every output.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:#fff;border-radius:11px;padding:14px 16px;border:1px solid rgba(5,150,105,.15)">
+          <div style="font-family:var(--fm);font-size:10px;color:#059669;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px">LVQ Framework</div>
+          <p style="font-size:12px;color:var(--g700);line-height:1.6">Lube, Value, Question: the qualifying rhythm applied to every sales conversation. Acknowledge, give, then ask. Never just ask.</p>
+        </div>
+        <div style="background:#fff;border-radius:11px;padding:14px 16px;border:1px solid rgba(5,150,105,.15)">
+          <div style="font-family:var(--fm);font-size:10px;color:#059669;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px">A-B Gap Method</div>
+          <p style="font-size:12px;color:var(--g700);line-height:1.6">Point A: where they are. Point B: where they want to be. Stretch the gap. The bigger it feels, the clearer the urgency for a solution.</p>
+        </div>
+        <div style="background:#fff;border-radius:11px;padding:14px 16px;border:1px solid rgba(5,150,105,.15)">
+          <div style="font-family:var(--fm);font-size:10px;color:#059669;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px">5-Touch Follow-Up</div>
+          <p style="font-size:12px;color:var(--g700);line-height:1.6">80% of sales happen after the 5th touchpoint. Every follow-up adds something new. Never repeats. Day 1, 3, 7, 14 rhythm built in.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec sec-alt" style="padding:40px 0 60px">
+  <div class="wrap">
+    <div class="stag sr d0">27 LinkedIn Marketing Skills Included</div>
+    <h2 class="sh sr d1" style="margin-bottom:10px">The complete LinkedIn-to-inbound<br>system. Inside AI CEO.</h2>
+    <p class="sb sr d2" style="margin-bottom:28px">All 27 skills from the LinkedIn Marketing plugin are bundled inside AI CEO. Foundation, research, strategy, content creation, lead magnet, conversion, and analytics, all connected and all producing outputs in Danny's voice.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+      <div class="sr d1" style="background:#fff;border:1px solid var(--br2);border-radius:13px;padding:16px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Foundation (4)</div>
+        <div style="font-size:12px;color:var(--g700);line-height:1.8">LinkedIn AI Coach<br>Personal Authority<br>Business Authority<br>AI Founders Board</div>
+      </div>
+      <div class="sr d2" style="background:#fff;border:1px solid var(--br2);border-radius:13px;padding:16px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Research + Strategy (7)</div>
+        <div style="font-size:12px;color:var(--g700);line-height:1.8">The Scout · Investigator<br>Synthesizer · Data Reader<br>Content Strategy<br>Pillars Extractor<br>Calendar Generator</div>
+      </div>
+      <div class="sr d3" style="background:#fff;border:1px solid var(--br2);border-radius:13px;padding:16px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Content (8)</div>
+        <div style="font-size:12px;color:var(--g700);line-height:1.8">Hook Generator<br>Caption Writer ×2<br>Carousel Brief<br>Content Repurposer<br>Pinned Comments<br>Batch Sequencer<br>Newsletter</div>
+      </div>
+      <div class="sr d4" style="background:#fff;border:1px solid var(--br2);border-radius:13px;padding:16px">
+        <div style="font-family:var(--fm);font-size:10px;color:var(--red);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Lead Magnet + Conversion (8)</div>
+        <div style="font-size:12px;color:var(--g700);line-height:1.8">LM Ideator · Creator<br>Landing Page<br>Email Sequence<br>LM Post Writer<br>Profile Optimizer<br>DM Sequence<br>Social Analyst</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOWS 10 TABS -->
+<section class="sec" id="workflows">
+  <div class="wrap">
+    <div class="stag sr d0">15 Agentic Workflows</div>
+    <h2 class="sh sr d1">Every way to use<br>the system together.</h2>
+    <p class="sb sr d2">From the full executive briefing to Apollo lead campaigns to Apify competitor intelligence. Every workflow shows which plugins, which commands, and what connects.</p>
+
+    <div class="wtabs sr d3" id="wtabs">
+      <div class="wtab on" data-i="0">Full Briefing</div>
+      <div class="wtab" data-i="1">Monday Ritual</div>
+      <div class="wtab" data-i="2">Apollo Lead Campaign</div>
+      <div class="wtab" data-i="3">Competitor Intel</div>
+      <div class="wtab" data-i="4">Profile Analytics</div>
+      <div class="wtab" data-i="5">New Client</div>
+      <div class="wtab" data-i="6">Content Machine</div>
+      <div class="wtab" data-i="7">Revenue Push</div>
+      <div class="wtab" data-i="8">Quarterly Reset</div>
+      <div class="wtab" data-i="9">Pipeline Forecast</div>
+    </div>
+
+    <!-- WF 0: Full Briefing -->
+    <div class="wfpanel on" id="wf0">
+      <div class="wfhero"><div class="wfn">01</div><div><h3>Full Executive Briefing</h3><p>One command. Five briefs. 15 intake questions answered once. The complete AI Operating System run in a single conversation.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#129504;</div><div><h4>Open CEO Brain: run /full-executive-briefing</h4><p>Answer 15 questions in 3 rounds: identity and strategy, revenue and sales, marketing and operations. You answer once. All 5 departments use those answers.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128196;</div><div><h4>CEO Brain writes strategy brief and business state</h4><p>Strategic posture, quarterly rocks, constraint identified. business-state.md written to Notion and Drive. All executives briefed.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#127381;</div><div><h4>CMO, CRO, COO, CFO generate in sequence</h4><p>Each reads state, applies domain frameworks, produces branded HTML brief. Five briefs saved to Drive under /Executive Briefs/[date]/.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#127919;</div><div><h4>Cross-executive synthesis delivered</h4><p>CEO Brain synthesises all 5 verdicts. The single highest-leverage action that moves all departments. The biggest cross-department risk named plainly.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">All 1 Plugin</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span><span class="wfc">Gmail</span></div>
+    </div>
+
+    <!-- WF 1: Monday Ritual -->
+    <div class="wfpanel" id="wf1">
+      <div class="wfhero"><div class="wfn">02</div><div><h3>Monday to Friday Loop</h3><p>The complete weekly operating rhythm. CEO Brain sets the week. Executives execute their handoffs. Friday closes the loop.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128197;</div><div><h4>Monday: CEO Brain prep and session</h4><p>Run <span class="cmd">/monday-prep</span> reads last week's executive reports, calendar, open pipeline. Say "Monday session" to run the 5-step ritual. Then <span class="cmd">/write-business-state</span> and <span class="cmd">/executive-handoff</span>.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#9881;</div><div><h4>Tuesday: COO and CFO check in</h4><p>AI COO: <span class="cmd">/sync-ceo-brain</span> then "COO mode": ops check against this week's priority. AI CFO: same flow. Does the financial position support it?</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128227;</div><div><h4>Wednesday: CMO content and CRO pipeline</h4><p>AI CMO: <span class="cmd">/content-map-agent</span> or "CMO mode" for content work. AI CRO: <span class="cmd">/pipeline-scan-agent</span> to catch anything going cold mid-week.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>Thursday: CRO follow-up and proposals</h4><p>AI CRO: discovery call prep via "prep me for a call with [name]". Proposals via <span class="cmd">/proposal-builder-agent</span>. Update state after.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#9989;</div><div><h4>Friday: executive reports then CEO check</h4><p>Each executive runs <span class="cmd">/weekly-executive-report</span>. Back to CEO Brain for <span class="cmd">/friday-check</span>: reads Monday's commitment and all executive reports.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">All 1 Plugin</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span><span class="wfc">Gmail</span><span class="wfc">Calendar</span></div>
+    </div>
+
+    <!-- WF 2: Apollo Lead Campaign -->
+    <div class="wfpanel" id="wf2">
+      <div class="wfhero"><div class="wfn">03</div><div><h3>Apollo Lead Campaign</h3><p>Build a targeted lead list from Apollo, enrich it with LinkedIn data via Apify, write personalised DM sequences, then run a coordinated content campaign to warm the audience.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128269;</div><div><h4>CEO Brain: Build the Apollo lead list</h4><p>Run <span class="cmd">/apollo-lead-builder</span> in CEO Brain. Define ICP criteria (title, company size, industry). Apify scrapes Apollo and LinkedIn. Every lead scored 1-10. Top leads flagged with specific personalisation signals.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>AI CRO: Build personalised sequences for top leads</h4><p>Run <span class="cmd">/cold-outreach-sequencer</span> in AI CRO. It loads the lead list from Drive, builds a 5-touch DM sequence per lead using their LinkedIn post data. Message 1 references something specific they wrote.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#127919;</div><div><h4>CEO Brain: Launch a coordinated campaign</h4><p>Run <span class="cmd">/campaign-runner</span>. Define campaign goal, duration, and offer. Campaign runner writes the content sequence for CMO and the DM activation sequence for CRO. Both departments get handoff directives.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128227;</div><div><h4>AI CMO: Write all campaign post copy</h4><p>Run <span class="cmd">/linkedin-campaign-content</span> in AI CMO. Reads the campaign plan from Notion. Writes every post fully: hook, body, CTA, pinned comment. Ready to schedule.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CRO: Follow up as leads engage</h4><p>As DMs come in from the keyword CTA, CRO activates the prospect intelligence brief for each high-signal lead via <span class="cmd">/prospect-intel-scraper</span> before responding.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">CEO Brain</span><span class="wfc">AI CMO</span><span class="wfc">AI CRO</span><span class="wfc">Apify (Apollo)</span><span class="wfc">Notion</span><span class="wfc">Drive</span></div>
+    </div>
+
+    <!-- WF 3: Competitor Intel -->
+    <div class="wfpanel" id="wf3">
+      <div class="wfhero"><div class="wfn">04</div><div><h3>Competitor Intelligence</h3><p>Scrape 3-5 competitor LinkedIn profiles via Apify, map their content strategy, find the gaps they are not covering, and build a differentiated content angle for the next 30 days.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128279;</div><div><h4>AI CMO: Run /competitor-scraper</h4><p>Paste 3-5 competitor LinkedIn URLs. Apify scrapes their last 30 posts, follower counts, engagement rates, posting frequency. Takes about 5 minutes to complete.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128202;</div><div><h4>CMO analyses the competitor matrix</h4><p>Builds a topic-by-topic matrix: what each competitor covers, what formats they use, what engagement they get. Cross-references with 2026 platform benchmarks from li-07-analytics.md.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#127775;</div><div><h4>Gaps identified: differentiation report built</h4><p>Top 5 content gaps nobody is covering. 3 "only you" post ideas grounded in the founder's unique experience. Recommended niche to own. Saved to Drive and Notion.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128197;</div><div><h4>AI CMO: Build 30-day calendar from the gaps</h4><p>Run <span class="cmd">/content-map-agent</span> with the competitor analysis as context. The 30-day plan is built around the identified gaps, not what competitors are already doing.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CMO</span><span class="wfc">Apify</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span></div>
+    </div>
+
+    <!-- WF 4: Profile Analytics -->
+    <div class="wfpanel" id="wf4">
+      <div class="wfhero"><div class="wfn">05</div><div><h3>Own Profile Analytics</h3><p>Scrape your own LinkedIn profile and post data via Apify, build a weekly or monthly performance report, and generate specific optimisation actions grounded in 2026 benchmarks.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128269;</div><div><h4>AI CMO: Run /profile-analytics</h4><p>Say "weekly profile update" or "monthly profile report". Apify scrapes your LinkedIn profile: follower count, recent posts with engagement data, profile completeness. Takes about 3 minutes.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128202;</div><div><h4>Performance benchmarked against 2026 data</h4><p>Your engagement rate compared against li-07-analytics.md benchmarks for your follower tier. Your format performance vs platform averages. Your posting frequency vs topical authority requirements from li-05-content-pillars.md.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128196;</div><div><h4>HTML report saved, specific actions generated</h4><p>Weekly or monthly HTML report saved to Drive. Top 3 specific optimisation actions, not "post more consistently" but "your Tuesday text posts get 2.3x your average engagement. Post Tuesday, Thursday, Saturday."</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128260;</div><div><h4>Business state updated with latest metrics</h4><p>CMO DATA in business-state.md updated: follower count, engagement rate, growth MoM. CEO Brain reads this on next Monday prep with no manual reporting needed.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CMO</span><span class="wfc">Apify</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span></div>
+    </div>
+
+    <!-- WF 5: New Client -->
+    <div class="wfpanel" id="wf5">
+      <div class="wfhero"><div class="wfn">06</div><div><h3>New Client Cycle</h3><p>From prospect intelligence to signed proposal to client onboarded. CRO leads, CMO and COO support, CFO prices it correctly.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128269;</div><div><h4>AI CRO: Research the prospect via Apify</h4><p>Run <span class="cmd">/prospect-intel-scraper</span> with the prospect's LinkedIn URL. Apify scrapes their profile and recent posts. 5-module intelligence brief built: fit score, psychology, pain signals, 5 personalised openers.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128222;</div><div><h4>AI CRO: Prep the discovery call</h4><p>Say "prep me for a call with [name]". Sales call prep reads the prospect intel brief, builds a 5-phase live call guide, and scripts 3 objection responses specific to this prospect's situation.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CFO: Check the pricing before the proposal</h4><p>Run <span class="cmd">/offer-profitability-scanner</span> or say "CFO mode" and ask about the scope. CFO checks whether the proposed price is above the true cost floor including founder time.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128203;</div><div><h4>AI CRO: Build and send the proposal</h4><p>Run <span class="cmd">/proposal-builder-agent</span>. Pulls conversation history from Gmail and Notion. Applies offer structure. One price. One transformation. One next step.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#9989;</div><div><h4>AI COO: Onboard the new client</h4><p>Once signed, AI COO checks delivery capacity, creates the client SOP via <span class="cmd">/sop-builder-agent</span>, sets up the Notion client page. <span class="cmd">/client-health-monitor</span> keeps the record live weekly.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CRO</span><span class="wfc">AI CFO</span><span class="wfc">AI COO</span><span class="wfc">Apify</span><span class="wfc">Gmail</span><span class="wfc">Notion</span></div>
+    </div>
+
+    <!-- WF 6: Content Machine -->
+    <div class="wfpanel" id="wf6">
+      <div class="wfhero"><div class="wfn">07</div><div><h3>Content Machine</h3><p>Strategy to 30 days of written, scheduled content in one session. Competitor gaps inform the strategy. Profile analytics inform the format. Campaign runner coordinates with CRO.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128202;</div><div><h4>AI CMO: Run competitor scraper and profile analytics</h4><p>Run <span class="cmd">/competitor-scraper</span> and <span class="cmd">/profile-analytics</span> first. These two agents tell you what is working for you and what nobody in your niche is covering. This is the foundation of the content strategy.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#127919;</div><div><h4>AI CMO: Build content strategy from gaps</h4><p>Say "content strategy": the strategy skill reads the competitor analysis and profile data from Notion. Pillars are built around identified gaps, not generic topics.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128197;</div><div><h4>AI CMO: Run /content-map-agent for 30-day calendar</h4><p>30-day calendar built from the strategy. Format selection grounded in 2026 data. Every conversion post has a keyword CTA. Every carousel is fully briefed.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#9889;</div><div><h4>AI CMO: Write all post copy via /linkedin-campaign-content</h4><p>Every post fully written: hook, body, CTA, pinned comment. Ready to schedule. No editing needed except for personal stories the AI cannot invent.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>AI CRO: Activate follow-up on conversion posts</h4><p>CMO writes conversion posts with a keyword CTA. CRO runs <span class="cmd">/cold-outreach-sequencer</span> for everyone who DMs the keyword, triggering a personalised follow-up sequence triggered automatically.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CMO</span><span class="wfc">AI CRO</span><span class="wfc">Apify</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span></div>
+    </div>
+
+    <!-- WF 7: Revenue Push -->
+    <div class="wfpanel" id="wf7">
+      <div class="wfhero"><div class="wfn">08</div><div><h3>Revenue Push</h3><p>When cash is tight or pipeline is thin. CMO drives inbound. CRO converts it. CFO prices it right. COO makes sure ops can deliver without breaking.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CFO: Run /revenue-dashboard-agent</h4><p>Get the real numbers: cash runway, break-even, MRR percentage. CFO tells you whether this is a revenue problem or a cost problem. Revenue has no ceiling, cutting has a floor. Focus on revenue first.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>AI CRO: Reactivate and close this week</h4><p>Run <span class="cmd">/pipeline-scan-agent</span>: every cold thread gets a follow-up today. Run <span class="cmd">/cold-outreach-sequencer</span> for the Apollo lead list. Quick-wins skill: reactivate past clients, ask 3 clients for specific referrals.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128227;</div><div><h4>AI CMO: One conversion post with keyword CTA today</h4><p>CMO writes one conversion post with a keyword CTA using the viral hook generator skill. Post it. DM everyone who engages within 24 hours. Run <span class="cmd">/post-repurpose-agent</span> on any recent win for 5 more posts this week.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CFO: Run /offer-profitability-scanner</h4><p>Check whether proposals going out this week are priced to the value of the outcome. One reframe on pricing can add thousands to the same deal without changing the offer.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CFO</span><span class="wfc">AI CRO</span><span class="wfc">AI CMO</span><span class="wfc">AI COO</span><span class="wfc">Gmail</span><span class="wfc">Notion</span></div>
+    </div>
+
+    <!-- WF 8: Quarterly Reset -->
+    <div class="wfpanel" id="wf8">
+      <div class="wfhero"><div class="wfn">09</div><div><h3>Quarterly Reset</h3><p>Start of every quarter. CEO Brain sets the rocks. All 4 executives align to those rocks. Business state fully refreshed. Every department knows the plan.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#127919;</div><div><h4>CEO Brain: Run /quarterly-plan</h4><p>Reads current business state, applies constraint-removal framework, identifies revenue stage, sets 3 quarterly rocks with weekly milestones. Writes new state to Notion and Drive. Runs <span class="cmd">/executive-handoff</span> with quarter-specific directives.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128227;</div><div><h4>AI CMO: Align content strategy to rocks</h4><p>Sync state, say "CMO mode": content strategy built around Rock 1 or 2. <span class="cmd">/competitor-scraper</span> run at quarter start to reset differentiation analysis. New 30-day calendar for Month 1.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>AI CRO: Set revenue targets and outreach plan</h4><p>Sync state, run <span class="cmd">/pipeline-revenue-forecast</span> sets the 90-day revenue target, calculates required pipeline volume, identifies how many Apollo leads and conversations needed per week.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#9881;</div><div><h4>AI COO: Capacity planning for the quarter</h4><p>Sync state, say "COO mode": checks whether team can deliver the quarterly rocks. <span class="cmd">/team-performance-pulse</span> runs to establish baseline. SOPs prioritised for quarter. Delegation decisions made before work starts.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CFO: Financial plan for the quarter</h4><p>Sync state, run <span class="cmd">/revenue-dashboard-agent</span> and <span class="cmd">/offer-profitability-scanner</span> ensures pricing supports the revenue target set by CRO. Flags any financial constraints affecting the 3 rocks.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">All 1 Plugin</span><span class="wfc">Google Drive</span><span class="wfc">Notion</span><span class="wfc">Calendar</span></div>
+    </div>
+
+    <!-- WF 9: Pipeline Forecast -->
+    <div class="wfpanel" id="wf9">
+      <div class="wfhero"><div class="wfn">10</div><div><h3>Pipeline to Revenue Forecast</h3><p>Connect real pipeline data with the CFO financial model to forecast the next 90 days. Know whether your pipeline is sufficient to hit your financial targets before the month starts.</p></div></div>
+      <div class="wfbody"><div class="wfsteps">
+        <div class="wfs"><div class="wfs-ic">&#128200;</div><div><h4>AI CRO: Run /pipeline-revenue-forecast</h4><p>Reads active deals from Notion and Gmail. Builds a deal-by-deal probability matrix. Forecasts Month 1 (likely closes), Month 2 (mid-pipeline), Month 3 (top-of-funnel to build now). Cross-references close rate history.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128680;</div><div><h4>Flags raised automatically</h4><p>Month 1 below break-even = RED FLAG. Month 2 pipeline thin = AMBER. Month 3 pipeline empty = flag to CEO Brain and CMO for campaign planning. Each flag includes the specific corrective action.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#128184;</div><div><h4>AI CFO: Validate the forecast against financial model</h4><p>Forecast numbers fed into CFO cash flow model. If Month 2 forecast is below break-even, CFO checks whether current cash runway bridges the gap or whether immediate revenue action is needed.</p></div></div>
+        <div class="wfs"><div class="wfs-ic">&#129504;</div><div><h4>CEO Brain: Campaign runner activated if pipeline thin</h4><p>If Month 3 pipeline is empty, CEO Brain runs <span class="cmd">/campaign-runner</span> automatically to brief CMO and CRO on a lead generation campaign designed to fill the Month 3 gap.</p></div></div>
+      </div></div>
+      <div class="wffoot"><span class="wfl">Needs</span><span class="wfc">AI CRO</span><span class="wfc">AI CFO</span><span class="wfc">CEO Brain</span><span class="wfc">Gmail</span><span class="wfc">Notion</span><span class="wfc">Google Drive</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KEY COMMANDS -->
+<section class="sec sec-alt" id="commands">
+  <div class="wrap">
+    <div class="stag sr d0">Key Commands</div>
+    <h2 class="sh sr d1">The commands that<br>connect everything.</h2>
+    <p class="sb sr d2">These are the cross-department connective tissue. Every command works standalone. These are what make the whole system compound week by week.</p>
+    <div class="cmdgrid">
+      <div class="cmdcard sr d1"><span class="cmdcard-label">/write-business-state</span><div class="cmdcard-text"><strong>CEO Brain</strong>After every Monday session or quarterly plan: writes the strategy and context to Notion and Drive so all 4 executives read it.</div></div>
+      <div class="cmdcard sr d2"><span class="cmdcard-label">/executive-handoff</span><div class="cmdcard-text"><strong>CEO Brain</strong>Writes specific weekly directives for CMO, CRO, COO, CFO to Notion. Each executive reads their directive when they activate.</div></div>
+      <div class="cmdcard sr d3"><span class="cmdcard-label">/full-executive-briefing</span><div class="cmdcard-text"><strong>CEO Brain</strong>Runs all 5 departments in one conversation. 15 intake questions. 5 HTML briefs. Cross-executive synthesis.</div></div>
+      <div class="cmdcard sr d4"><span class="cmdcard-label">/sync-ceo-brain</span><div class="cmdcard-text"><strong>All 4 executives</strong>Reads the shared business-state.md before the session starts. Executive walks in knowing the strategy, rocks, and constraint.</div></div>
+      <div class="cmdcard sr d1"><span class="cmdcard-label">/update-state</span><div class="cmdcard-text"><strong>All 4 executives</strong>Writes department findings back to business-state.md after every session. Cross-executive insights included.</div></div>
+      <div class="cmdcard sr d2"><span class="cmdcard-label">/weekly-executive-report</span><div class="cmdcard-text"><strong>All 4 executives</strong>Friday summary: what moved, what stalled, key metric, whether CEO Brain handoff directive was actioned.</div></div>
+      <div class="cmdcard sr d3"><span class="cmdcard-label">/apollo-lead-builder</span><div class="cmdcard-text"><strong>CEO Brain</strong>Apollo + Apify: builds a scored lead list from ICP criteria. Scores each lead 1-10. Hands off to CRO for sequences.</div></div>
+      <div class="cmdcard sr d4"><span class="cmdcard-label">/campaign-runner</span><div class="cmdcard-text"><strong>CEO Brain</strong>Sets campaign goal and duration. Briefs CMO with post sequence. Briefs CRO with DM activation plan. Both get written handoff directives.</div></div>
+      <div class="cmdcard sr d1"><span class="cmdcard-label">/competitor-scraper</span><div class="cmdcard-text"><strong>AI CMO</strong>Scrapes 3-5 competitor LinkedIn profiles via Apify. Finds content gaps. Builds differentiation report and 30-day counter-strategy.</div></div>
+      <div class="cmdcard sr d2"><span class="cmdcard-label">/profile-analytics</span><div class="cmdcard-text"><strong>AI CMO</strong>Scrapes own LinkedIn profile and post data weekly or monthly. Benchmarks against 2026 data. Generates specific optimisation actions.</div></div>
+      <div class="cmdcard sr d3"><span class="cmdcard-label">/pipeline-revenue-forecast</span><div class="cmdcard-text"><strong>AI CRO</strong>90-day revenue forecast from real pipeline data. Flags gaps. Triggers CEO Brain campaign-runner if Month 3 is empty.</div></div>
+      <div class="cmdcard sr d4"><span class="cmdcard-label">/offer-profitability-scanner</span><div class="cmdcard-text"><strong>AI CFO</strong>True P&amp;L per offer including founder's unpaid time. Identifies which offers are subsidised. Specific pricing recommendations.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKLY RHYTHM -->
+<section class="sec" id="rhythm">
+  <div class="wrap">
+    <div class="stag sr d0">Weekly Rhythm</div>
+    <h2 class="sh sr d1">Which department, which day,<br>which command.</h2>
+    <p class="sb sr d2">Follow this cadence and the system compounds week by week. The shared state grows richer. The executives get smarter. The Monday prep brief gets more specific every week.</p>
+    <div class="rhgrid">
+      <div class="rhday mon sr d0">
+        <div class="rhdl">Monday</div>
+        <div class="rha red">/monday-prep</div>
+        <div class="rha">Monday session</div>
+        <div class="rha red">/write-business-state</div>
+        <div class="rha red">/executive-handoff</div>
+      </div>
+      <div class="rhday sr d1">
+        <div class="rhdl">Tuesday</div>
+        <div class="rha amb">COO mode</div>
+        <div class="rha blu">CFO mode</div>
+        <div class="rha">Review handoffs</div>
+      </div>
+      <div class="rhday sr d2">
+        <div class="rhdl">Wednesday</div>
+        <div class="rha pur">/content-map-agent</div>
+        <div class="rha grn">/pipeline-scan-agent</div>
+        <div class="rha pur">Post content</div>
+      </div>
+      <div class="rhday sr d3">
+        <div class="rhdl">Thursday</div>
+        <div class="rha grn">Sales call prep</div>
+        <div class="rha grn">/proposal-builder</div>
+        <div class="rha">DM follow-ups</div>
+      </div>
+      <div class="rhday sr d4">
+        <div class="rhdl">Friday</div>
+        <div class="rha pur">/weekly-report CMO</div>
+        <div class="rha grn">/weekly-report CRO</div>
+        <div class="rha amb">/weekly-report COO</div>
+        <div class="rha blu">/weekly-report CFO</div>
+        <div class="rha red">/friday-check</div>
+      </div>
+      <div class="rhday sr d5">
+        <div class="rhdl">Monthly</div>
+        <div class="rha pur">/profile-analytics</div>
+        <div class="rha pur">/competitor-scraper</div>
+        <div class="rha blu">/offer-profitability</div>
+      </div>
+      <div class="rhday sr d6">
+        <div class="rhdl">Quarterly</div>
+        <div class="rha red">/quarterly-plan</div>
+        <div class="rha grn">/pipeline-forecast</div>
+        <div class="rha red">/apollo-lead-builder</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding:14px 20px;background:var(--rp);border:1px solid rgba(232,41,76,.2);border-radius:12px;font-size:13px;color:var(--g700);line-height:1.7" class="sr d2">
+      <strong style="color:var(--red)">The compounding effect:</strong> Week 1 the system learns your business. Month 1 every executive already knows your rocks, constraint, and pipeline. Month 3 it flags cross-department risks before you do. Month 6 the Monday prep brief writes itself.
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTORS -->
+<section class="sec sec-alt" id="connectors">
+  <div class="wrap">
+    <div class="stag sr d0">5 Connectors</div>
+    <h2 class="sh sr d1">Authorise once.<br>All departments use them.</h2>
+    <p class="sb sr d2">Authorise each connector in CEO Brain via /connect-services. The same authorisation works across all 1 plugin.</p>
+    <div class="cgrid">
+      <div class="cc sr d1"><div class="cc-ic">&#128193;</div><h3>Google Drive</h3><p>Saves all HTML briefs, business state, SOPs, proposals, lead lists, campaign files</p><span class="cc-b">All 1 plugin</span></div>
+      <div class="cc sr d2"><div class="cc-ic">&#9993;</div><h3>Gmail</h3><p>Pipeline scanning, follow-up drafts, outstanding invoices, client email history, Sell-by-Chat follow-up sending</p><span class="cc-b">CEO + CRO + COO + CFO</span></div>
+      <div class="cc sr d3"><div class="cc-ic">&#128197;</div><h3>Calendar</h3><p>Week ahead preview, time audit, quarterly capacity planning</p><span class="cc-b">CEO + COO + CFO</span></div>
+      <div class="cc sr d4"><div class="cc-ic">&#128221;</div><h3>Notion</h3><p>Single source of truth: business state, SOPs, client records, session history, lead lists</p><span class="cc-b">All 1 plugin</span></div>
+      <div class="cc sr d5"><div class="cc-ic">&#128269;</div><h3>Apify</h3><p>LinkedIn profile scraping, Apollo lead enrichment, competitor content analysis, own profile analytics for CMO benchmarking</p><span class="cc-b">CEO + CMO + CRO</span></div>
     </div>
   </div>
 </section>
 
 <!-- INSTALL -->
-<section class="install-section" id="install">
-  <div class="container">
-    <div class="sec-tag">Installation</div>
-    <h2 class="sec-title">Ready in 5 minutes.<br>One zip. One upload.</h2>
-    <p class="sec-body">Download the plugin from Google Drive, upload to Claude Cowork, and connect your tools. That's it.</p>
-
-    <div class="install-track fu d1">
-      <div class="install-step">
-        <div class="install-step-num">01</div>
-        <h3>Download</h3>
-        <p>Get the plugin zip from Google Drive.</p>
-        <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:11px;color:var(--red);text-decoration:none;font-weight:500">&#8599; Open Drive folder</a>
+<section class="sec" id="install">
+  <div class="wrap">
+    <div class="stag sr d0">Installation</div>
+    <h2 class="sh sr d1">One plugin. One install.<br>Everything inside.</h2>
+    <p class="sb sr d2">AI CEO is one zip file: ai-ceo.zip. CEO Brain, all 4 executives, and all 27 LinkedIn marketing skills install in a single upload. One zip. One upload. Everything connected.</p>
+    <div class="install-row">
+      <div class="inst sr d0">
+        <div class="inst-n">01</div>
+        <h3>Download ai-ceo.zip</h3>
+        <p>One zip file from Google Drive. Contains all 51 skills and 86 agents. Do not unzip before uploading.</p>
+        <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="inst-link">&#8599; Open Drive</a>
       </div>
-      <div class="install-step">
-        <div class="install-step-num">02</div>
+      <div class="inst sr d1">
+        <div class="inst-n">02</div>
         <h3>Create plugin</h3>
-        <p>Customize &rsaquo; Personal plugins &rsaquo; + &rsaquo; Create plugin &rsaquo; Upload plugin</p>
-        <code>Upload ai-ceo-brain.zip</code>
+        <p>Customize &rsaquo; Personal plugins &rsaquo; + &rsaquo; Create plugin &rsaquo; Upload plugin &rsaquo; select ai-ceo-brain-final.zip</p>
+        <span class="inst-c">Install first</span>
       </div>
-      <div class="install-step">
-        <div class="install-step-num">03</div>
-        <h3>Connect</h3>
-        <p>Authorise all 5 tools in one guided flow.</p>
-        <code>/connect-services</code>
+      <div class="inst sr d2">
+        <div class="inst-n">03</div>
+        <h3>Connect services</h3>
+        <p>Same process for ai-cmo-final.zip, ai-cro-final.zip, ai-coo-final.zip, ai-cfo-final.zip. Each takes 30 seconds.</p>
+        <span class="inst-c">Any order</span>
       </div>
-      <div class="install-step">
-        <div class="install-step-num">04</div>
-        <h3>Start</h3>
-        <p>Verify everything works then start your first session.</p>
-        <code>/preflight-check</code>
+      <div class="inst sr d3">
+        <div class="inst-n">04</div>
+        <h3>Connect services once</h3>
+        <p>In CEO Brain, type /connect-services. Authorise Drive, Notion, Gmail, Calendar, Apify via OAuth. Works across all 1 plugin.</p>
+        <span class="inst-c">/connect-services</span>
+      </div>
+      <div class="inst sr d4">
+        <div class="inst-n">05</div>
+        <h3>Run full briefing</h3>
+        <p>In CEO Brain, type /full-executive-briefing. Answer 15 questions. All 5 departments briefed in one conversation.</p>
+        <span class="inst-c">/full-executive-briefing</span>
       </div>
     </div>
 
-    <div class="install-detail fu d2">
-      <h3>Step-by-step installation guide</h3>
-      <div class="install-steps-list">
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num r">1</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Download the plugin zip from Google Drive</h4>
-            <p>Open the Drive folder, find <code>ai-ceo-brain.zip</code>, and download it to your computer. Keep it as a zip file. Do not unzip it.</p>
-            <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;color:var(--red);text-decoration:none;font-weight:500;margin-top:8px">&#8599; Open Google Drive folder</a>
-          </div>
+    <div style="margin-top:28px;background:var(--blk2);border-radius:20px;padding:28px 32px;display:grid;grid-template-columns:1fr 1fr;gap:28px" class="sr d3">
+      <div>
+        <div style="font-family:var(--fm);font-size:10px;color:rgba(232,41,76,.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">Install Order</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.7)"><span style="font-family:var(--fm);font-size:11px;color:var(--red);background:rgba(232,41,76,.12);padding:2px 9px;border-radius:5px">1st</span>AI CEO Brain: ai-ceo-brain-final.zip</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.7)"><span style="font-family:var(--fm);font-size:11px;color:#A78BFA;background:rgba(124,58,237,.12);padding:2px 9px;border-radius:5px">2nd</span>AI CMO: ai-cmo-final.zip</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.7)"><span style="font-family:var(--fm);font-size:11px;color:#34D399;background:rgba(5,150,105,.12);padding:2px 9px;border-radius:5px">3rd</span>AI CRO: ai-cro-final.zip</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.7)"><span style="font-family:var(--fm);font-size:11px;color:#FCD34D;background:rgba(217,119,6,.12);padding:2px 9px;border-radius:5px">4th</span>AI COO: ai-coo-final.zip</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.7)"><span style="font-family:var(--fm);font-size:11px;color:#60A5FA;background:rgba(37,99,235,.12);padding:2px 9px;border-radius:5px">5th</span>AI CFO: ai-cfo-final.zip</div>
         </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num">2</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Open Claude Cowork and go to Customize</h4>
-            <p>Open Claude Cowork on desktop. Click the <strong>Customize</strong> button in the top right corner of the interface.</p>
-          </div>
+      </div>
+      <div>
+        <div style="font-family:var(--fm);font-size:10px;color:rgba(232,41,76,.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px">First Session Sequence</div>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:12px;color:rgba(255,255,255,.55)">
+          <div><span style="font-family:var(--fm);color:var(--red)">/connect-services</span>: authorise all 5 connectors</div>
+          <div><span style="font-family:var(--fm);color:var(--red)">/preflight-check</span>: verify everything is live</div>
+          <div><span style="font-family:var(--fm);color:var(--red)">/full-executive-briefing</span>: run all 5 departments at once</div>
+          <div><span style="font-family:var(--fm);color:#A78BFA">/competitor-scraper</span>: CMO intelligence baseline</div>
+          <div><span style="font-family:var(--fm);color:#34D399">/apollo-lead-builder</span>: first lead list from CEO Brain</div>
+          <div>Then follow the weekly rhythm above</div>
         </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num r">3</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Open Personal Plugins and click the + button</h4>
-            <p>Inside Customize, find the <strong>Personal plugins</strong> section. Click the <strong>+</strong> button to add a new plugin.</p>
-            <div class="tip">You are looking for Personal plugins, not the general Skills tab. The + button sits next to the Personal plugins heading.</div>
-          </div>
-        </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num">4</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Select Create plugin then Upload plugin</h4>
-            <p>A menu appears with options. Click <strong>Create plugin</strong>, then on the next screen click <strong>Upload plugin</strong>. Select the <code>ai-ceo-brain.zip</code> file you downloaded. The plugin validates and installs automatically. You will see AI CEO Brain appear in your Personal plugins list.</p>
-            <div class="tip">Keep the file as a zip. Do not unzip it before uploading. If validation fails, re-download from the Drive folder and try again.</div>
-          </div>
-        </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num r">5</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Connect your five services</h4>
-            <p>Start a new conversation in Claude Cowork and type the connect command. This walks you through authorising each service one at a time via OAuth popups.</p>
-            <div class="cmd">&#47;connect-services</div>
-            <div class="tip">Services to connect: Google Drive, Gmail, Google Calendar, Notion, Apify. Each one takes about 30 seconds. You only do this once.</div>
-          </div>
-        </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num">6</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Authorise each service when prompted</h4>
-            <p>For each service, Claude will trigger a small test query which opens the OAuth authorisation popup. Click Allow and return to the conversation. Claude confirms each one before moving to the next.</p>
-            <div class="tip">For Notion: select your main workspace and grant full page access. For Gmail: grant both read and send permissions so the pipeline agent can draft and send follow-ups.</div>
-          </div>
-        </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num r">7</div>
-            <div class="ist-line"></div>
-          </div>
-          <div class="ist-body">
-            <h4>Run the preflight check</h4>
-            <p>Once all five services are connected, run the preflight check. This verifies all 17 skills, 10 agents, and 5 connectors are working correctly before you start.</p>
-            <div class="cmd">&#47;preflight-check</div>
-            <div class="tip">Any item showing a red cross gets a one-line fix in the report. Green ticks across the board means you are ready.</div>
-          </div>
-        </div>
-
-        <div class="ist">
-          <div class="ist-left">
-            <div class="ist-num">8</div>
-          </div>
-          <div class="ist-body">
-            <h4>Start your first session</h4>
-            <p>Type the monday prep command to pre-load your week, then say "Monday session" to run your first CEO session. Or just ask any business question to see a skill activate.</p>
-            <div class="cmd">&#47;monday-prep</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section class="skills-section" id="skills">
-  <div class="container">
-    <div class="sec-tag">17 Skills</div>
-    <h2 class="sec-title">Triggered by conversation.<br>Every one produces an output.</h2>
-    <p class="sec-body">Type the trigger phrase or let Claude detect it from context. The right skill activates automatically and delivers a branded HTML file.</p>
-
-    <!-- CEO RITUALS -->
-    <div class="dept-block" style="margin-top:48px">
-      <div class="dept-header">
-        <span class="dept-pill dp-red">CEO Rituals</span>
-        <div class="dept-line"></div>
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="orb"></div><div class="orb"></div><div class="orb"></div>
+  <div class="wrap">
+    <div class="cta-in">
+      <div class="cta-stag">Get the full system</div>
+      <h2>One plugin.<br>Every department.</h2>
+      <p>51 skills. 86 agents. CEO Brain, all 4 executives, 27 LinkedIn marketing skills, and Sell-by-Chat wired into CRO. One install. One shared state. Every department in Danny's voice.</p>
+      <div class="cta-plugins">
+        <div class="cp"><div class="cp-n red">CEO Brain</div><div class="cp-s">12 skills · 38 agents</div></div>
+        <div class="cp"><div class="cp-n pur">AI CMO</div><div class="cp-s">3 skills · 11 agents</div></div>
+        <div class="cp"><div class="cp-n grn">AI CRO</div><div class="cp-s">3 skills · 11 agents</div></div>
+        <div class="cp"><div class="cp-n amb">AI COO</div><div class="cp-s">3 skills · 10 agents</div></div>
+        <div class="cp"><div class="cp-n blu">AI CFO</div><div class="cp-s">3 skills · 9 agents</div></div>
+      
+        <div class="cp"><div class="cp-n" style="color:#F9A8D4">LinkedIn Marketing</div><div class="cp-s">27 skills included</div></div>
       </div>
-      <div class="skills-grid">
-        <div class="sk fu d1">
-          <span class="sk-trigger">"Monday session" / "run my week"</span>
-          <h3>Monday Session</h3>
-          <p>Danny's exact 5-step weekly ritual: Review, Diagnose, Decide, Delegate, Protect. One conversation, one HTML summary.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d2">
-          <span class="sk-trigger">"board session" / "advise me"</span>
-          <h3>AI Founder's Board</h3>
-          <p>8 world-class advisors (Hormozi, Godin, Cardone, Brunson). 9-question diagnostic. 3 to 4 assigned advisors. One premium action plan.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d3">
-          <span class="sk-trigger">"go deep on [topic]"</span>
-          <h3>Deep Dive</h3>
-          <p>6-part full breakdown of any business concept. What it is, why people get it wrong, how Danny thinks about it, real example, applied to you, one action this week.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STRATEGY -->
-    <div class="dept-block">
-      <div class="dept-header">
-        <span class="dept-pill dp-black">Strategy</span>
-        <div class="dept-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="sk fu d1">
-          <span class="sk-trigger">"CEO mode" / "help with positioning"</span>
-          <h3>Strategy Advisor</h3>
-          <p>Vision, niche, offers, competitive advantage, growth models. 11 thinking models plus 8 scaling frameworks.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d2">
-          <span class="sk-trigger">"CFO mode" / "help me with pricing"</span>
-          <h3>Finance Advisor</h3>
-          <p>Pricing, cash flow, revenue models, break-even, recurring revenue. 12 thinking models. Profit is an opinion. Cash is a fact.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d3">
-          <span class="sk-trigger">"COO mode" / "I'm the bottleneck"</span>
-          <h3>Operations Advisor</h3>
-          <p>Team, systems, delegation, hiring, SOPs, time management. 13 thinking models. If you're in everything, you're the bottleneck.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="dept-block">
-      <div class="dept-header">
-        <span class="dept-pill dp-red">Content</span>
-        <div class="dept-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="sk fu d1">
-          <span class="sk-trigger">"CMO mode" / "LinkedIn strategy"</span>
-          <h3>Marketing Advisor</h3>
-          <p>Content strategy, lead magnets, audience building, personal brand. 14 thinking models plus 2026 LinkedIn algorithm data.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d2">
-          <span class="sk-trigger">"content pillars" / "build a strategy"</span>
-          <h3>Content Strategy</h3>
-          <p>Full strategy document with positioning, 5 to 6 content pillars, gap analysis, and 90-day plan. Built from web research, not guesswork.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d3">
-          <span class="sk-trigger">"write hooks" / "hook bank"</span>
-          <h3>Viral Hook Generator</h3>
-          <p>20 plus hooks across 12 patterns from any topic. Top 3 ranked with explanation. Under 12 words each. Zero AI patterns.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d4">
-          <span class="sk-trigger">"make a carousel" / "carousel brief"</span>
-          <h3>Carousel Brief Writer</h3>
-          <p>Complete slide-by-slide brief with copy and visual direction per slide. Designer executes without a single follow-up question.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d5">
-          <span class="sk-trigger">"repurpose this" / "new angle"</span>
-          <h3>Content Repurposer</h3>
-          <p>Transforms any existing content into new formats. Original voice survives the transformation. Nothing invented.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d6">
-          <span class="sk-trigger">"batch write my posts"</span>
-          <h3>Batch Writing Sequencer</h3>
-          <p>Turns a 30-day calendar into a timed writing session. Groups by format, easiest first. 30 days of content in under 2 hours.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SALES -->
-    <div class="dept-block">
-      <div class="dept-header">
-        <span class="dept-pill dp-black">Sales</span>
-        <div class="dept-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="sk fu d1">
-          <span class="sk-trigger">"CRO mode" / "help me close"</span>
-          <h3>Sales Advisor</h3>
-          <p>Pipeline, DMs, discovery calls, objection handling, follow-up. 13 thinking models including the objection map and clean close.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d2">
-          <span class="sk-trigger">"prep me for a call"</span>
-          <h3>Sales Call Prep</h3>
-          <p>Pre-call intelligence brief, live call guide, and 3 objection scripts specific to that prospect. The seller who asks better questions wins.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d3">
-          <span class="sk-trigger">"write a DM" / "DM sequence"</span>
-          <h3>DM Sequence Writer</h3>
-          <p>Full sequences for every scenario: cold, warm, lead magnet delivery, follow-up, reactivation. Three exchanges before any ask. Always.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d4">
-          <span class="sk-trigger">"research this prospect" / "find leads"</span>
-          <h3>Outreach Prospector</h3>
-          <p>5-module intelligence brief before any outreach: fit score, psychology, pain signals, personalisation arsenal, outreach recommendation.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-        <div class="sk fu d5">
-          <span class="sk-trigger">"audit my LinkedIn" / "rewrite my profile"</span>
-          <h3>LinkedIn Profile Writer</h3>
-          <p>Scores every section, rewrites all copy: 7 headline options, 2 full about section versions, banner, featured, top experience role.</p>
-          <div class="sk-arrow">&#8594;</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- AGENTS -->
-<section class="agents-section" id="agents">
-  <div class="container">
-    <div class="sec-tag">10 Agents</div>
-    <h2 class="sec-title">Triggered by command.<br>Work done while you think.</h2>
-    <p class="sec-body">Agents connect to your real tools, pull live data, complete multi-step work, and report back. Type the slash command and they handle the rest.</p>
-    <div class="agents-grid" style="margin-top:40px">
-
-      <div class="ag fu d1">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>monday-prep</div>
-          <h3>Monday CEO Prep</h3>
-          <p>Pulls last week's action items from Notion, scans the calendar for the week ahead, finds open pipeline threads in Gmail. Delivers a structured brief before the Monday session starts.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Calendar</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d2">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>weekly-report</div>
-          <h3>Weekly Report Builder</h3>
-          <p>Takes Monday session outputs, builds a branded HTML weekly report, saves to Google Drive under CEO Weekly Reports, logs a plain text summary to Notion.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Calendar</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d3">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>friday-check</div>
-          <h3>Friday Accountability Check</h3>
-          <p>Finds Monday's commitment from Notion, searches Drive and Gmail for evidence it was completed, delivers an honest verdict. Done, In Progress, or Not Done. No softening.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d4">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>pipeline-scan</div>
-          <h3>Pipeline Follow-Up Scanner</h3>
-          <p>Scans Gmail for sales threads with no reply in 3 or more days. Triages as HOT, WARM, or COLD. Drafts a specific follow-up message for each one. Sends on your approval.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Gmail</span><span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d1">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>proposal-builder</div>
-          <h3>Proposal Builder</h3>
-          <p>Pulls client history from Notion and Gmail, applies the Hormozi value equation and Danny's bundle principle, writes a complete proposal. One price. One transformation. One next step.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Gmail</span><span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d2">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>content-map</div>
-          <h3>Content Signal Map</h3>
-          <p>Reads LinkedIn performance data, cross-references 2026 algorithm benchmarks, identifies content gaps, builds a 30-day calendar with fully briefed posts grounded in real data.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span><span class="ag-conn">Apify</span>
-        </div>
-      </div>
-
-      <div class="ag fu d3">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>post-repurpose</div>
-          <h3>Post Repurposing Agent</h3>
-          <p>Takes any Drive document or pasted transcript, extracts 5 LinkedIn posts, 2 carousel briefs, and 1 cheatsheet brief. Nothing invented. Saves the full content pack to Drive and Notion.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d4">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>client-update</div>
-          <h3>Client Intelligence Updater</h3>
-          <p>Reads latest emails and meeting notes, extracts decisions and next actions with owners and deadlines, flags at-risk clients, updates the single source of truth page in Notion.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Gmail</span><span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d1">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>revenue-check</div>
-          <h3>Revenue Health Check</h3>
-          <p>Pulls financial data from Drive or Notion, calculates break-even, MRR percentage, client concentration, and cash runway. Flags red zones with specific fixes. Delivers branded HTML dashboard.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-      <div class="ag fu d2">
-        <div class="ag-top">
-          <div class="ag-cmd"><span class="slash">/</span>quarterly-plan</div>
-          <h3>90-Day Strategy Snapshot</h3>
-          <p>Pulls business state from Notion and Calendar, applies the constraint-removal framework, builds a 90-day rock plan with weekly milestones, a delegation map, and a calendar audit.</p>
-        </div>
-        <div class="ag-bottom">
-          <span class="ag-conn">Google Drive</span><span class="ag-conn">Calendar</span><span class="ag-conn">Notion</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- WORKFLOWS -->
-<section class="workflows-section" id="workflows">
-  <div class="container">
-    <div class="sec-tag">Key Workflows</div>
-    <h2 class="sec-title">How skills and agents<br>connect in real use.</h2>
-    <p class="sec-body">Each workflow combines multiple skills and agents into one end-to-end loop. Click a workflow to see how it runs.</p>
-
-    <div class="wf-tabs" style="margin-top:36px">
-      <div class="wf-tab active" onclick="showWf(0,this)">Monday Ritual</div>
-      <div class="wf-tab" onclick="showWf(1,this)">Pipeline Loop</div>
-      <div class="wf-tab" onclick="showWf(2,this)">Content Machine</div>
-      <div class="wf-tab" onclick="showWf(3,this)">Board Session</div>
-      <div class="wf-tab" onclick="showWf(4,this)">Financial Pulse</div>
-    </div>
-
-    <div id="wf0" class="wf-card active">
-      <div class="wf-hero">
-        <div class="wf-num">01</div>
-        <div class="wf-hero-text">
-          <h3>The Monday Ritual</h3>
-          <p>Start every week with clarity, not fog. Pre-loaded context, 5-step session, Friday accountability. The complete CEO weekly loop.</p>
-        </div>
-      </div>
-      <div class="wf-body">
-        <div class="wf-steps">
-          <div class="wfs"><div class="wfs-icon">&#128197;</div><div class="wfs-body"><h4>Run /monday-prep</h4><p>Pulls last week's action items from Notion, scans your calendar for the week ahead, finds open pipeline threads in Gmail. Delivers a structured brief before you even start.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#129504;</div><div class="wfs-body"><h4>Say "Monday session"</h4><p>The 5-step ritual runs as a conversation. <span class="tag">Review</span> <span class="tag">Diagnose</span> <span class="tag">Decide</span> <span class="tag">Delegate</span> <span class="tag">Protect</span>. Pushes back if you give a list instead of one thing.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128196;</div><div class="wfs-body"><h4>Run /weekly-report</h4><p>Takes session outputs, builds a branded HTML report, saves to Google Drive, logs to Notion. Your week is documented in one clean file.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#9989;</div><div class="wfs-body"><h4>Friday: run /friday-check</h4><p>Finds Monday's commitment from Notion, searches for evidence it was completed, delivers an honest verdict. Done, In Progress, or Not Done. No padding.</p></div></div>
-        </div>
-      </div>
-      <div class="wf-connectors">
-        <span class="wf-conn-label">Needs</span>
-        <span class="wf-conn-tag">Google Drive</span><span class="wf-conn-tag">Google Calendar</span><span class="wf-conn-tag">Notion</span>
-      </div>
-    </div>
-
-    <div id="wf1" class="wf-card">
-      <div class="wf-hero">
-        <div class="wf-num">02</div>
-        <div class="wf-hero-text">
-          <h3>The Pipeline Loop</h3>
-          <p>From cold prospect to signed proposal. Intelligence, outreach, preparation, and follow-up connected in one flow.</p>
-        </div>
-      </div>
-      <div class="wf-body">
-        <div class="wf-steps">
-          <div class="wfs"><div class="wfs-icon">&#128269;</div><div class="wfs-body"><h4>Research the prospect</h4><p>Paste a LinkedIn profile and the <span class="tag">outreach-prospector</span> builds a 5-module intelligence brief: fit score, pain signals, psychology, and personalisation hooks.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128172;</div><div class="wfs-body"><h4>Write the DM sequence</h4><p>The <span class="tag">dm-sequence-writer</span> uses the intelligence brief to craft a multi-touch sequence. No pitch in message one. Three exchanges before any ask.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128222;</div><div class="wfs-body"><h4>Prep the discovery call</h4><p>Before the call, <span class="tag">sales-call-prep</span> builds a pre-call brief, live call guide structured by 5 phases, and 3 objection scripts specific to this prospect's situation.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128203;</div><div class="wfs-body"><h4>Build the proposal</h4><p>Run <span class="tag">/proposal-builder</span> with the client name and requirement. Pulls conversation history, applies offer structure, delivers a complete branded proposal with one price and one next step.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128276;</div><div class="wfs-body"><h4>Catch cold threads</h4><p><span class="tag">/pipeline-scan</span> catches any thread that goes quiet. Drafts follow-ups. Sends on your approval. The sale almost never happens on the first contact.</p></div></div>
-        </div>
-      </div>
-      <div class="wf-connectors">
-        <span class="wf-conn-label">Needs</span>
-        <span class="wf-conn-tag">Gmail</span><span class="wf-conn-tag">Google Drive</span><span class="wf-conn-tag">Notion</span>
-      </div>
-    </div>
-
-    <div id="wf2" class="wf-card">
-      <div class="wf-hero">
-        <div class="wf-num">03</div>
-        <div class="wf-hero-text">
-          <h3>The Content Machine</h3>
-          <p>From zero to 30 days of content in one session. Strategy, calendar, hooks, carousels, and a timed writing plan.</p>
-        </div>
-      </div>
-      <div class="wf-body">
-        <div class="wf-steps">
-          <div class="wfs"><div class="wfs-icon">&#127919;</div><div class="wfs-body"><h4>Build the strategy</h4><p><span class="tag">content-strategy</span> researches your niche, builds 5 to 6 specific pillars, and a 90-day plan grounded in 2026 LinkedIn algorithm data. Not generic pillar names.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128200;</div><div class="wfs-body"><h4>Run /content-map</h4><p>Analyses your LinkedIn performance data, identifies what is working and what is missing, builds a 30-day calendar with full post briefs using Apify for real platform benchmarks.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#9889;</div><div class="wfs-body"><h4>Generate hooks</h4><p><span class="tag">viral-hook-generator</span> produces 20 plus hooks across 12 patterns for each post topic. Top 3 ranked with one-sentence explanation of why each one works.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128444;</div><div class="wfs-body"><h4>Brief the carousels</h4><p><span class="tag">carousel-brief-writer</span> builds designer-ready briefs for every carousel post in the calendar. Slide by slide. Copy and visual direction. No follow-up questions needed.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#9201;</div><div class="wfs-body"><h4>Run the writing session</h4><p><span class="tag">batch-writing-sequencer</span> turns the calendar into a timed session plan. Groups by format, easiest posts first, conversion posts last. 30 days of content in under 2 hours.</p></div></div>
-        </div>
-      </div>
-      <div class="wf-connectors">
-        <span class="wf-conn-label">Needs</span>
-        <span class="wf-conn-tag">Google Drive</span><span class="wf-conn-tag">Notion</span><span class="wf-conn-tag">Apify</span>
-      </div>
-    </div>
-
-    <div id="wf3" class="wf-card">
-      <div class="wf-hero">
-        <div class="wf-num">04</div>
-        <div class="wf-hero-text">
-          <h3>The Board Session</h3>
-          <p>Deep strategic guidance from 8 world-class advisors. Diagnostic, assignment, action plan, and deep dive in one session.</p>
-        </div>
-      </div>
-      <div class="wf-body">
-        <div class="wf-steps">
-          <div class="wfs"><div class="wfs-icon">&#127775;</div><div class="wfs-body"><h4>Say "board session"</h4><p>A 9-question diagnostic intake captures your business situation, gaps, and 90-day goal. The intake card generates automatically or runs as a conversation if the form does not load.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128101;</div><div class="wfs-body"><h4>Board assignment</h4><p>The <span class="tag">founders-board</span> skill reads all 8 advisor frameworks against your diagnostic answers and assigns exactly 3 to 4 advisors. Never all 8. Never fewer than 3.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128196;</div><div class="wfs-body"><h4>Premium action plan delivered</h4><p>Each advisor gives a verdict in their own voice grounded in 2026 LinkedIn data where relevant. 3 specific actions each. 90-day execution map. One thing to do this week.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128270;</div><div class="wfs-body"><h4>Go deep on the constraint</h4><p>Say "go deep on" followed by the constraint the board identified. The <span class="tag">deep-dive</span> skill picks up the context and delivers a 6-part breakdown connected to your board session.</p></div></div>
-        </div>
-      </div>
-      <div class="wf-connectors">
-        <span class="wf-conn-label">Needs</span>
-        <span class="wf-conn-tag">No connectors needed</span>
-      </div>
-    </div>
-
-    <div id="wf4" class="wf-card">
-      <div class="wf-hero">
-        <div class="wf-num">05</div>
-        <div class="wf-hero-text">
-          <h3>The Financial Pulse</h3>
-          <p>From financial anxiety to financial clarity. Real numbers, real red flags, real fixes, and a 90-day plan to address the constraint.</p>
-        </div>
-      </div>
-      <div class="wf-body">
-        <div class="wf-steps">
-          <div class="wfs"><div class="wfs-icon">&#128184;</div><div class="wfs-body"><h4>Run /revenue-check</h4><p>Pulls data from Drive or Notion and calculates break-even, MRR percentage, client concentration, and cash runway. All four numbers on one screen.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128680;</div><div class="wfs-body"><h4>Red zones flagged immediately</h4><p>Not "consider diversifying" but "Client X is 47 percent of your revenue. Here is what to do this week." Specific fixes for each number that is in the danger zone.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#129504;</div><div class="wfs-body"><h4>Say "CFO mode"</h4><p>The <span class="tag">finance-advisor</span> skill applies Danny's 12 finance thinking models to your specific situation. Pricing confidence, recurring revenue, break-even clarity.</p></div></div>
-          <div class="wfs"><div class="wfs-icon">&#128203;</div><div class="wfs-body"><h4>Run /quarterly-plan</h4><p>Builds the 90-day plan that fixes the financial constraint at your current revenue stage. Milestones, delegation map, and calendar audit included.</p></div></div>
-        </div>
-      </div>
-      <div class="wf-connectors">
-        <span class="wf-conn-label">Needs</span>
-        <span class="wf-conn-tag">Google Drive</span><span class="wf-conn-tag">Google Calendar</span><span class="wf-conn-tag">Notion</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONNECTORS -->
-<section style="background:#fff;padding:88px 0">
-  <div class="container">
-    <div class="sec-tag">5 Connectors</div>
-    <h2 class="sec-title">Your real tools.<br>Your real data.</h2>
-    <p class="sec-body">Authorise once via OAuth popup. No API keys. No configuration. Every agent uses them automatically after that.</p>
-    <div class="conn-grid">
-      <div class="cng fu d1">
-        <div class="cng-icon">&#128193;</div>
-        <h3>Google Drive</h3>
-        <p>Saves all HTML reports, reads documents, content packs, financial files</p>
-        <span class="cng-badge">Required</span>
-      </div>
-      <div class="cng fu d2">
-        <div class="cng-icon">&#9993;</div>
-        <h3>Gmail</h3>
-        <p>Pipeline scanning, follow-up drafts, client email history</p>
-        <span class="cng-badge">Required</span>
-      </div>
-      <div class="cng fu d3">
-        <div class="cng-icon">&#128197;</div>
-        <h3>Google Calendar</h3>
-        <p>Week ahead preview, time audit, how founder hours are actually spent</p>
-        <span class="cng-badge">Required</span>
-      </div>
-      <div class="cng fu d4">
-        <div class="cng-icon">&#128221;</div>
-        <h3>Notion</h3>
-        <p>Single source of truth for client records, sessions, action items, SOPs</p>
-        <span class="cng-badge">Required</span>
-      </div>
-      <div class="cng fu d5">
-        <div class="cng-icon">&#128269;</div>
-        <h3>Apify</h3>
-        <p>LinkedIn post performance data and profile intelligence for content strategy</p>
-        <span class="cng-badge">Required</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DOWNLOAD CTA -->
-<section class="cta-section">
-  <div class="cta-orb"></div>
-  <div class="cta-orb"></div>
-  <div class="cta-orb"></div>
-  <div class="container">
-    <div class="cta-inner">
-      <div class="sec-tag" style="justify-content:center">Get started today</div>
-      <h2>Install it once.<br>Use it forever.</h2>
-      <p>Danny's brain, plugged in. 17 skills. 10 agents. Every answer in Danny's voice. Every output a branded file you can share.</p>
       <div class="cta-btns">
-        <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="cta-btn-white">
-          &#8599; Download from Google Drive
-        </a>
-        <a href="#install" class="cta-btn-outline">
-          &#8595; Installation guide
-        </a>
+        <a href="https://drive.google.com/drive/folders/1jgDPayzBe5xGSJ0a-9TWefsWRY9Ty6vH?usp=sharing" target="_blank" class="cb-w">&#8599; Download all 5 from Google Drive</a>
+        <a href="#install" class="cb-o">&#8595; Installation guide</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div>
-    <div class="f-brand">Purely Personal</div>
-    <div class="f-by">by Daniel Paul</div>
-  </div>
-  <div class="f-meta">AI CEO Brain v5.0.0 &nbsp;·&nbsp; 17 Skills &nbsp;·&nbsp; 10 Agents &nbsp;·&nbsp; 5 Connectors</div>
+  <div><div class="fb">Purely Personal</div><div class="fby">by Daniel Paul</div></div>
+  <div class="fm2">AI Operating System · 1 Plugin · 51 Skills · 86 Agents · 1 Shared State</div>
 </footer>
 
 <script>
 /* ============================================================
-   ANIMATION ORCHESTRATION ENGINE
+   ANIMATION ENGINE — clean, deliberate, no scattered effects
    ============================================================ */
 
-/* ---- 1. HERO WORD REVEAL ---- */
+/* 1. HERO WORD REVEAL — staggered, perspective-driven */
 (function(){
-  const words = document.querySelectorAll('.hero-word');
-  words.forEach(w => {
-    const delay = parseInt(w.getAttribute('data-delay') || 0);
-    w.style.animationPlayState = 'paused';
-    setTimeout(() => {
-      w.style.animationPlayState = 'running';
-    }, delay);
+  // Particles
+  const hero = document.getElementById('hero');
+  const pts = [{l:'12%',t:'22%',d:0,s:4},{l:'25%',t:'65%',d:.8,s:3.5},{l:'73%',t:'18%',d:.3,s:5},{l:'86%',t:'58%',d:1.1,s:6},{l:'48%',t:'82%',d:.55,s:7},{l:'91%',t:'35%',d:.9,s:4.5}];
+  pts.forEach(p=>{
+    const el=document.createElement('div');
+    el.className='hpt';
+    el.style.cssText=`left:${p.l};top:${p.t};width:${p.s}px;height:${p.s}px;opacity:.35;animation:fp ${p.d*0+4}s ${p.d}s ease-in-out infinite`;
+    // Override animation duration via inline
+    el.style.animation=`fp ${3.8+Math.random()*2.4}s ${p.d}s ease-in-out infinite`;
+    hero.insertBefore(el,hero.firstChild.nextSibling);
+  });
+
+  // Word reveal
+  document.querySelectorAll('.hw').forEach(w=>{
+    const delay = parseInt(w.getAttribute('data-d')||0);
+    setTimeout(()=>w.classList.add('in'), delay);
   });
 })();
 
-/* ---- 2. HERO STAT COUNT-UP ---- */
-function animateCount(el, target, duration){
-  const start = performance.now();
+/* 2. STAT COUNT-UP */
+function countUp(el, target, duration){
+  const s = performance.now();
   (function tick(now){
-    const progress = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(ease * target);
-    if(progress < 1) requestAnimationFrame(tick);
-  })(start);
+    const p = Math.min((now-s)/duration,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.round(e*target);
+    if(p<1) requestAnimationFrame(tick);
+  })(s);
 }
 
-/* ---- 3. INTERSECTION OBSERVER — master scroll engine ---- */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(!e.isIntersecting) return;
-    const el = e.target;
+/* 3. HERO GRID PARALLAX */
+const hg = document.getElementById('hgrid');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY < window.innerHeight*1.3 && hg){
+    hg.style.transform=`translateY(${window.scrollY*.12}px)`;
+  }
+},{passive:true});
 
-    /* Generic fade-up elements */
-    if(el.classList.contains('fu') || el.classList.contains('fi') ||
-       el.classList.contains('sl') || el.classList.contains('sr') ||
-       el.classList.contains('sc')){
-      el.classList.remove('paused');
+/* 4. NAV SCROLL STATE + ACTIVE SECTION */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled', window.scrollY>40);
+},{passive:true});
+
+const navLinks = document.querySelectorAll('.nl a[href^="#"]');
+const sections = Array.from(navLinks).map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+const sObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
     }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s=>sObs.observe(s));
 
-    /* Stat count-up */
-    if(el.classList.contains('h-stat')){
-      el.classList.add('revealed');
-      const num = el.querySelector('[data-target]');
-      if(num) animateCount(num, parseInt(num.dataset.target), 1200);
+/* 5. SCROLL REVEAL — IntersectionObserver, staggered by data-delay */
+const srObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      el.classList.add('in');
+      srObs.unobserve(el);
     }
+  });
+},{threshold:0.1});
 
-    /* What cards staggered */
-    if(el.classList.contains('wc')){
-      const idx = Array.from(el.parentElement.children).indexOf(el);
-      setTimeout(() => el.classList.add('revealed'), idx * 100);
-    }
+document.querySelectorAll('.sr,.sr-l,.sr-r').forEach(el=>srObs.observe(el));
 
-    /* Skill cards staggered cascade */
-    if(el.classList.contains('sk')){
-      const siblings = Array.from(el.closest('.skills-grid').querySelectorAll('.sk'));
-      const idx = siblings.indexOf(el);
-      setTimeout(() => el.classList.add('revealed'), idx * 60);
-    }
-
-    /* Agent cards alternating slide */
-    if(el.classList.contains('ag')){
-      const siblings = Array.from(el.closest('.agents-grid').querySelectorAll('.ag'));
-      const idx = siblings.indexOf(el);
-      setTimeout(() => el.classList.add('revealed'), idx * 80);
-    }
-
-    /* Connector cards stagger */
-    if(el.classList.contains('cng')){
-      const siblings = Array.from(el.closest('.conn-grid').querySelectorAll('.cng'));
-      const idx = siblings.indexOf(el);
-      setTimeout(() => el.classList.add('revealed'), idx * 70);
-    }
-
-    /* Dept blocks */
-    if(el.classList.contains('dept-block')){
-      el.classList.add('revealed');
-      const cards = el.querySelectorAll('.sk');
-      cards.forEach((c, i) => {
-        setTimeout(() => c.classList.add('revealed'), 120 + i * 55);
+/* STATS — observe the stats bar, trigger count-up when visible */
+const statObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-count]').forEach((num,i)=>{
+        setTimeout(()=>countUp(num,parseInt(num.dataset.count),1200), i*120);
       });
+      statObs.unobserve(e.target);
     }
-
-    /* Install step number pop + line draw */
-    if(el.classList.contains('ist')){
-      const siblings = Array.from(document.querySelectorAll('.ist'));
-      const idx = siblings.indexOf(el);
-      const num = el.querySelector('.ist-num');
-      const line = el.querySelector('.ist-line');
-      setTimeout(() => { if(num) num.classList.add('popped'); }, idx * 120);
-      setTimeout(() => { if(line) line.classList.add('drawn'); }, idx * 120 + 300);
-    }
-
-    /* Sec-title underline draw */
-    if(el.classList.contains('sec-title-anim')){
-      el.classList.add('drawn');
-    }
-
-    io.unobserve(el);
   });
-}, { threshold: 0.12 });
+},{threshold:.5});
+const statsBar = document.querySelector('.hstats');
+if(statsBar) statObs.observe(statsBar);
 
-/* Register all animated elements */
-document.querySelectorAll(
-  '.fu,.fi,.sl,.sr,.sc,.h-stat,.wc,.sk,.ag,.cng,.dept-block,.ist,.sec-title-anim'
-).forEach(el => {
-  if(el.classList.contains('fu') || el.classList.contains('fi') ||
-     el.classList.contains('sl') || el.classList.contains('sr') ||
-     el.classList.contains('sc')){
-    el.classList.add('paused');
-  }
-  io.observe(el);
-});
-
-/* Agent cards — set alternating direction before observing */
-document.querySelectorAll('.ag').forEach((ag, i) => {
-  ag.classList.add(i % 2 === 0 ? 'from-left' : 'from-right');
-});
-
-/* ---- 4. WORKFLOW TAB SWITCHER ---- */
-function showWf(i, btn){
-  document.querySelectorAll('.wf-card').forEach((c,j) => {
-    c.style.display = 'none';
-    c.classList.remove('active');
-  });
-  document.querySelectorAll('.wf-tab').forEach((t,j) => t.classList.toggle('active', j===i));
-  const card = document.getElementById('wf'+i);
-  if(card){ card.style.display = 'block'; card.classList.add('active'); }
-}
-/* Init first tab */
-showWf(0);
-
-/* ---- 5. NAV ACTIVE INDICATOR ---- */
-(function(){
-  const indicator = document.getElementById('nav-indicator');
-  const links = document.querySelectorAll('#nav-links a[data-section]');
-  const sections = Array.from(links).map(l => document.getElementById(l.dataset.section));
-
-  function moveIndicator(link){
-    if(!indicator || !link) return;
-    const parent = link.parentElement;
-    const parentRect = parent.getBoundingClientRect();
-    const linkRect = link.getBoundingClientRect();
-    indicator.style.left = (linkRect.left - parentRect.left) + 'px';
-    indicator.style.width = linkRect.width + 'px';
-  }
-
-  links.forEach(l => {
-    l.addEventListener('mouseenter', () => moveIndicator(l));
-  });
-  document.getElementById('nav-links').addEventListener('mouseleave', () => {
-    indicator.style.width = '0';
-  });
-
-  /* Scroll-based active */
-  const sio = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        const id = entry.target.id;
-        const match = document.querySelector(`#nav-links a[data-section="${id}"]`);
-        if(match) moveIndicator(match);
-      }
+/* 6. WORKFLOW TABS — clean panel switch */
+const wtabs = document.querySelectorAll('.wtab');
+const wfpanels = document.querySelectorAll('.wfpanel');
+wtabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const i = parseInt(tab.dataset.i);
+    wtabs.forEach(t=>t.classList.toggle('on',parseInt(t.dataset.i)===i));
+    wfpanels.forEach(p=>{
+      p.classList.remove('on');
+      p.style.display='none';
     });
-  }, { threshold: 0.4 });
-  sections.forEach(s => { if(s) sio.observe(s); });
-})();
-
-/* ---- 6. MAGNETIC BUTTON EFFECT ---- */
-document.querySelectorAll('.btn-magnetic').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const x = e.clientX - r.left - r.width / 2;
-    const y = e.clientY - r.top - r.height / 2;
-    btn.style.transform = `translate(${x * 0.18}px, ${y * 0.18}px)`;
+    const panel = document.getElementById('wf'+i);
+    if(panel){ panel.style.display='block'; panel.classList.add('on'); }
   });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = '';
+});
+// init first
+wfpanels.forEach((p,i)=>{ if(i>0)p.style.display='none'; });
+
+/* 7. SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
   });
 });
 
-/* ---- 7. HERO GRID PARALLAX ---- */
-const heroBg = document.querySelector('.hero-grid-bg');
-if(heroBg){
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if(y < window.innerHeight * 1.2){
-      heroBg.style.transform = `translateY(${y * 0.15}px)`;
-    }
-  }, { passive: true });
-}
-
-/* ---- 8. SMOOTH SCROLL FOR NAV LINKS ---- */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if(target){
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+/* 8. EC-A HOVER ripple is CSS-only — JS handles magnetic effect on CTA buttons */
+document.querySelectorAll('.cb-w,.cb-o,.nc').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.15;
+    const y=(e.clientY-r.top-r.height/2)*.15;
+    btn.style.transform=`translate(${x}px,${y}px)`;
+    if(btn.classList.contains('cb-w'))btn.style.transform=`translateY(-2px) translate(${x}px,${y}px)`;
   });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='');
 });
 </script>
 </body>
